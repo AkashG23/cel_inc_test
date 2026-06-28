@@ -639,7 +639,7 @@ addLayer("achievements", {
             image: "resources/achievements/4_06.png",
             tooltip: "<h3>Dark Friends</h3><hr style='margin-bottom:4px'>Evolve Gwa.",
             color: "#2b7f0a",
-            complete() {return getLevelableAmount("pet", 1101).gt(0)},
+            complete() {return getLevelableAmount("pet", 1101).gte(1)},
             unlocked: true,
         },
         307: {
@@ -1010,14 +1010,12 @@ addLayer("achievements", {
                 content: [
                     ["top-column", [
                         ["raw-html", "WIP lol"],
-                        /*
                         ["row", [
                             ["achievement", 301], ["achievement", 302], ["achievement", 303], ["achievement", 304], ["achievement", 305], ["achievement", 306],
                             ["achievement", 307], ["achievement", 308], ["achievement", 309], ["achievement", 310], ["achievement", 311], ["achievement", 312],
                             ["achievement", 313], ["achievement", 314], ["achievement", 315], ["achievement", 316], ["achievement", 317], ["achievement", 318],
                             ["achievement", 319], ["achievement", 320], ["achievement", 321], ["achievement", 322], ["achievement", 323], ["achievement", 324],
                         ]],
-                        */
                     ], {width: "621px", height: "409px", background: "#081902", borderLeft: "3px solid white", padding: "3px"}],
                 ],
             },
