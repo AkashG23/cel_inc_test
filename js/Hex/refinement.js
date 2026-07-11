@@ -408,4 +408,13 @@ addLayer("hre", {
         ["blank", "25px"],
     ],
     layerShown() { return true }, // Decides if this node is shown or not.
+    hotkeys: [
+        {
+            key: "r", 
+            description: "Refine",
+            onPress() {
+                clickClickable(this.layer, 1)
+            },
+        }
+	]
 });
