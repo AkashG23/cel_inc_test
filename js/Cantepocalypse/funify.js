@@ -706,7 +706,16 @@
         11: {
             title: "Fun Upgrade I",
             unlocked() { return player.fu.jocusCelestialActivate },
-            description: "Boost perk point gain based on anonymity.",
+            // description: "Boost perk point gain based on anonymity.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "1" + 
+                "</span></h2><br><br>" + // top
+                "Boost perk point gain based on anonymity. (x" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle 
+                "Cost: <h3>3,000</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(3000),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
@@ -715,12 +724,33 @@
                 return player.an.anonymity.pow(0.06).add(1)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         12: {
             title: "Fun Upgrade II",
             unlocked() { return hasUpgrade("fu", 11) },
-            description: "Boost oil gain based on perk points.",
+            // description: "Boost oil gain based on perk points.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "2" + 
+                "</span></h2><br><br>" + // top
+                "Boost oil gain based on perk points. (x" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle 
+                "Cost: <h3>7,000</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(7000),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
@@ -729,22 +759,64 @@
                 return player.pr.perkPoints.add(1).log(1e5).add(1)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         13: {
             title: "Fun Upgrade III",
             unlocked() { return hasUpgrade("fu", 12) },
-            description: "Keep grass-skip and proto memory buyables on funify reset.",
+            // description: "Keep grass-skip and proto memory buyables on funify reset.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "3" + 
+                "</span></h2><br><br>" + // top
+                "Keep grass-skip and proto memory buyables on funify reset.<br><br>" + // middle 
+                "Cost: <h3>25,000</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(25000),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
             currencyInternalName: "fun",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         14: {
             title: "Fun Upgrade IV",
             unlocked() { return hasUpgrade("fu", 13) },
-            description: "Boost proto memory production seconds based on time played.",
+            // description: "Boost proto memory production seconds based on time played.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "4" + 
+                "</span></h2><br><br>" + // top
+                "Boost proto memory production seconds based on time played. (x" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle 
+                "Cost: <h3>70,000</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(70000),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
@@ -753,79 +825,235 @@
                 return player.timePlayed*0.000001 + 1
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         15: {
             title: "Fun Upgrade V",
             unlocked() { return hasUpgrade("fu", 14) },
-            description: "Unlock the mood triangle.",
+            // description: "Unlock the mood triangle.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "5" + 
+                "</span></h2><br><br>" + // top
+                "Unlock the mood triangle.<br><br>" + // middle 
+                "Cost: <h3>500,000</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(500000),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
             currencyInternalName: "fun",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         16: {
             title: "Fun Upgrade VI",
             unlocked() { return hasUpgrade("fu", 15) },
-            description: "Keep grass-skip and proto memory buyables on singularity reset.",
+            // description: "Keep grass-skip and proto memory buyables on singularity reset.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "6" + 
+                "</span></h2><br><br>" + // top
+                "Keep grass-skip and proto memory buyables on singularity reset.<br><br>" + // middle 
+                "Cost: <h3>10,000,000</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(10000000),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
             currencyInternalName: "fun",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         17: {
             title: "Fun Upgrade VII",
             unlocked() { return hasUpgrade("fu", 16) },
-            description() { return hasUpgrade("fu", 17) ? "Unlock Fear." : "..." },
+            // description() { return hasUpgrade("fu", 17) ? "Unlock Fear." : "..." },
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "7" + 
+                "</span></h2><br><br>" + // top
+                (hasUpgrade("fu", 17) ? "Unlock Fear." : "...") + "<br><br>" + // middle 
+                "Cost: <h3>300,000,000</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(300000000),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
             currencyInternalName: "fun",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         18: {
             title: "Fun Upgrade VIII",
             unlocked() { return hasUpgrade("fu", 17) },
-            description: "You can buy max grass-skip.",
+            // description: "You can buy max grass-skip.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "8" + 
+                "</span></h2><br><br>" + // top
+                "You can buy max grass-skip.<br><br>" + // middle 
+                "Cost: <h3>1.00e10</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e10),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
             currencyInternalName: "fun",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         19: {
             title: "Fun Upgrade IX",
             unlocked() { return hasUpgrade("fu", 18) && hasUpgrade("s", 19) },
-            description: "Unlock a singularity effect that buffs core scraps.",
+            // description: "Unlock a singularity effect that buffs core scraps.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #fcff04; border-radius: 50%; color: #000000;'>" + 
+                "9" + 
+                "</span></h2><br><br>" + // top
+                "Unlock a singularity effect that buffs core scraps.<br><br>" + // middle 
+                "Cost: <h3>1.00e25</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e25),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
             currencyInternalName: "fun",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         20: {
             title: "Fun Upgrade X",
             unlocked() { return hasUpgrade("fu", 19) && player.ir.iriditeDefeated},
-            description: "Always keep pollinator grass-skip milestones and effect is based on highest grass-skips.",
+            // description: "Always keep pollinator grass-skip milestones and effect is based on highest grass-skips.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #fcff04; border-radius: 15px; color: #000000;'>" + 
+                "10" + 
+                "</span></h2><br><br>" + // top
+                "Always keep pollinator grass-skip milestones and effect is based on highest grass-skips.<br><br>" + // middle 
+                "Cost: <h3>1.00e150</h3> Fun" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e150),
             currencyLocation() { return player.fu },
             currencyDisplayName: "Fun",
             currencyInternalName: "fun",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
 
         101: {
             title: "Apathy I",
             unlocked() {return player.fu.enterNumb},
-            description: "Triple replicanti mult",
+            // description: "Triple replicanti mult",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "1" + 
+                "</span></h2><br><br>" + // top
+                "Triple replicanti mult.<br><br>" + // middle 
+                "Cost: <h3>1</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -833,13 +1061,31 @@
         102: {
             title: "Apathy II",
             unlocked() {return player.fu.enterNumb},
-            description: "Double apathy gain.",
+            // description: "Double apathy gain.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "2" + 
+                "</span></h2><br><br>" + // top
+                "Double apathy gain.<br><br>" + // middle 
+                "Cost: <h3>2</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(2),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -847,7 +1093,16 @@
         103: {
             title: "Apathy III",
             unlocked() {return player.fu.enterNumb},
-            description: "Reduce the replicanti cooldown by 5% per apathy upgrade.",
+            // description: "Reduce the replicanti cooldown by 5% per apathy upgrade.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "3" + 
+                "</span></h2><br><br>" + // top
+                "Reduce the replicanti cooldown by 5% per apathy upgrade. (/" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle 
+                "Cost: <h3>4</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(4),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
@@ -861,7 +1116,16 @@
             },
             effectDisplay() { return "/" + formatSimple(upgradeEffect(this.layer, this.id), 2) }, // Add formatting to the effect
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -869,13 +1133,31 @@
         104: {
             title: "Apathy IV",
             unlocked() {return player.fu.enterNumb},
-            description: "Improve the first numbness effect.",
+            // description: "Improve the first numbness effect.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "4" + 
+                "</span></h2><br><br>" + // top
+                "Improve the first numbness effect.<br><br>" + // middle 
+                "Cost: <h3>6</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(6),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -883,13 +1165,31 @@
         105: {
             title: "Apathy V",
             unlocked() {return player.fu.enterNumb},
-            description: "No longer reset anonymity upgrades on apathy reset.",
+            // description: "No longer reset anonymity upgrades on apathy reset.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "5" + 
+                "</span></h2><br><br>" + // top
+                "No longer reset anonymity upgrades on apathy reset.<br><br>" + // middle 
+                "Cost: <h3>8</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(8),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -897,7 +1197,16 @@
         106: {
             title: "Apathy VI",
             unlocked() {return player.fu.enterNumb},
-            description: "Unlock a second apathy effect that weakens replicanti softcaps in numbness challenge.",
+            // description: "Unlock a second apathy effect that weakens replicanti softcaps in numbness challenge.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "6" + 
+                "</span></h2><br><br>" + // top
+                "Unlock a second apathy effect that weakens replicanti softcaps in numbness challenge.<br><br>" + // middle 
+                "Cost: <h3>10</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(10),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
@@ -906,7 +1215,16 @@
                 return Decimal.div(1, player.fu.apathy.add(1).log(10).div(10).add(1)).max(0.5)
             },
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -914,7 +1232,16 @@
         107: {
             title: "Apathy VII",
             unlocked() {return player.fu.enterNumb},
-            description: "Boost apathy gain based on pollinators.",
+            // description: "Boost apathy gain based on pollinators.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "7" + 
+                "</span></h2><br><br>" + // top
+                "Boost apathy gain based on pollinators. (x" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle 
+                "Cost: <h3>16</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(16),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
@@ -924,7 +1251,16 @@
             },
             effectDisplay() { return "x" + formatSimple(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -932,13 +1268,31 @@
         108: {
             title: "Apathy VIII",
             unlocked() {return player.fu.enterNumb},
-            description: "Unlock the plant pollinator.",
+            // description: "Unlock the plant pollinator.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "8" + 
+                "</span></h2><br><br>" + // top
+                "Unlock the plant pollinator.<br><br>" + // middle 
+                "Cost: <h3>32</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(32),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -946,13 +1300,31 @@
         109: {
             title: "Apathy IX",
             unlocked() {return player.fu.enterNumb},
-            description: "Gain 10% anonymity per second while in numbness challenge.",
+            // description: "Gain 10% anonymity per second while in numbness challenge.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #ffffff; border-radius: 50%; color: #000000;'>" + 
+                "9" + 
+                "</span></h2><br><br>" + // top
+                "Gain 10% anonymity per second while in numbness challenge.<br><br>" + // middle 
+                "Cost: <h3>48</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(48),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -960,13 +1332,31 @@
         110: {
             title: "Apathy X",
             unlocked() {return player.fu.enterNumb},
-            description: "Unlock a new ship: Stinger.",
+            // description: "Unlock a new ship: Stinger.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #ffffff; border-radius: 15px; color: #000000;'>" + 
+                "10" + 
+                "</span></h2><br><br>" + // top
+                "Unlock a new ship: Stinger.<br><br>" + // middle 
+                "Cost: <h3>64</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(64),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -974,13 +1364,31 @@
         111: {
             title: "Apathy XI",
             unlocked() {return player.fu.enterNumb},
-            description: "Halve all A1 cooldowns.",
+            // description: "Halve all A1 cooldowns.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #ffffff; border-radius: 15px; color: #000000;'>" + 
+                "11" + 
+                "</span></h2><br><br>" + // top
+                "Halve all A1 cooldowns.<br><br>" + // middle 
+                "Cost: <h3>128</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(128),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -988,13 +1396,31 @@
         112: {
             title: "Apathy XII",
             unlocked() {return player.fu.enterNumb},
-            description: "Unlock new numbness buyables.",
+            // description: "Unlock new numbness buyables.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #ffffff; border-radius: 15px; color: #000000;'>" + 
+                "12" + 
+                "</span></h2><br><br>" + // top
+                "Unlock new numbness buyables.<br><br>" + // middle 
+                "Cost: <h3>256</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(256),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -1002,13 +1428,31 @@
         113: {
             title: "Apathy XIII",
             unlocked() {return player.fu.enterNumb},
-            description: "Boost the 2nd effect of numbness.",
+            // description: "Boost the 2nd effect of numbness.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #ffffff; border-radius: 15px; color: #000000;'>" + 
+                "13" + 
+                "</span></h2><br><br>" + // top
+                "Boost the 2nd effect of numbness.<br><br>" + // middle 
+                "Cost: <h3>7,500</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(7500),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -1016,13 +1460,31 @@
         114: {
             title: "Apathy XIV",
             unlocked() {return player.fu.enterNumb},
-            description: "Double numbness gain.",
+            // description: "Double numbness gain.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #ffffff; border-radius: 15px; color: #000000;'>" + 
+                "14" + 
+                "</span></h2><br><br>" + // top
+                "Double numbness gain.<br><br>" + // middle 
+                "Cost: <h3>250,000</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(250000),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -1030,7 +1492,16 @@
         115: {
             title: "Apathy XV",
             unlocked() {return player.fu.enterNumb},
-            description: "Apathy boosts first four emotions.",
+            // description: "Apathy boosts first four emotions.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #ffffff; border-radius: 15px; color: #000000;'>" + 
+                "15" + 
+                "</span></h2><br><br>" + // top
+                "Apathy boosts first four emotions. (x" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle 
+                "Cost: <h3>7,500,000</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(7500000),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
@@ -1040,7 +1511,16 @@
             },
             effectDisplay() { return "x" + formatSimple(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -1048,13 +1528,31 @@
         116: {
             title: "Apathy XVI",
             unlocked() {return player.fu.enterNumb},
-            description: "Gain 10% of numbness outside of numbness challenge.",
+            // description: "Gain 10% of numbness outside of numbness challenge.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 40px; border: 2px solid #000000; background-color: #ffffff; border-radius: 15px; color: #000000;'>" + 
+                "16" + 
+                "</span></h2><br><br>" + // top
+                "Gain 10% of numbness outside of numbness challenge.<br><br>" + // middle 
+                "Cost: <h3>100,000,000</h3> Apathy" + // bottom
+                "</div>"
+            },
             cost: new Decimal(100000000),
             currencyLocation() {return player.fu},
             currencyDisplayName: "Apathy",
             currencyInternalName: "apathy",
             style() {
-                let look = {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"}
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
                 hasUpgrade(this.layer, this.id) ? look.background = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.background = "#bf8f8f" : look.background = "white"
                 return look
             },
@@ -3207,9 +3705,14 @@
                     ["style-row", [["ex-buyable", 21], ["ex-buyable", 22], ["ex-buyable", 23], ["ex-buyable", 24]], {maxWidth: "1200px"}],
                     ["blank", "25px"],
                     ["row", [["clickable", 12]]],
-                    ["style-row", [
-                        ["upgrade", 11], ["upgrade", 12], ["upgrade", 13], ["upgrade", 14], ["upgrade", 15],
-                        ["upgrade", 16], ["upgrade", 17], ["upgrade", 18], ["upgrade", 19], ["upgrade", 20]], {maxWidth: "650px"}],
+                    ["style-row", [["upgrade", 11], ["blank", "10px"], ["upgrade", 12], ["blank", "10px"], ["upgrade", 13],], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [["upgrade", 14], ["blank", "10px"], ["upgrade", 15],], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [["upgrade", 16], ["blank", "10px"], ["upgrade", 17], ["blank", "10px"], ["upgrade", 18],], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [["upgrade", 19], ["blank", "10px"], ["upgrade", 20],], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
                 ]
             },
             "SFRGT": {
@@ -3316,10 +3819,32 @@
                     ["clickable", 32],
                     ["blank", "10px"],
                     ["style-row", [
-                        ["upgrade", 101], ["upgrade", 102], ["upgrade", 103], ["upgrade", 104], ["upgrade", 105], ["upgrade", 106],
-                        ["upgrade", 107], ["upgrade", 108], ["upgrade", 109], ["upgrade", 110], ["upgrade", 111], ["upgrade", 112],
-                        ["upgrade", 113], ["upgrade", 114], ["upgrade", 115], ["upgrade", 116],
-                    ], {maxWidth: "750px"}],
+                        ["upgrade", 101], ["blank", "10px"], ["upgrade", 102], ["blank", "10px"], ["upgrade", 103],
+                    ], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [
+                        ["upgrade", 104], ["blank", "10px"], ["upgrade", 105],
+                    ], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [
+                        ["upgrade", 106], ["blank", "10px"], ["upgrade", 107], ["blank", "10px"], ["upgrade", 108],
+                    ], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [
+                        ["upgrade", 109], ["blank", "10px"], ["upgrade", 110],
+                    ], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [
+                        ["upgrade", 111], ["blank", "10px"], ["upgrade", 112], ["blank", "10px"], ["upgrade", 113],
+                    ], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [
+                        ["upgrade", 114], ["blank", "10px"], ["upgrade", 115],
+                    ], {maxWidth: "1100px"}],
+                    ["blank", "10px"],
+                    ["style-row", [
+                        ["upgrade", 116],
+                    ], {maxWidth: "1100px"}],
                 ]
             },
             "Perks": {

@@ -1,4 +1,4 @@
-﻿addLayer("gs", {
+﻿addLayer("gs", { // hi
     name: "Grass-Skip", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "GS", // This appears on the layer's node. Default is the id with the first letter capitalized
     universe: "A1",
@@ -27,8 +27,6 @@
     }
     },
     automate() {
-    },
-    nodeStyle() {
         if (hasMilestone("s", 16) && (!inChallenge("fu", 11) && !hasUpgrade("en", 12)) && !inChallenge("fu", 12))
         {
             buyBuyable('gs', 11)
@@ -40,6 +38,8 @@
             buyBuyable('gs', 17)
             buyBuyable('gs', 18)
         }
+    },
+    nodeStyle() {
     },
     tooltip: "Grass-Skip",
     branches: ["rg"],
@@ -507,73 +507,121 @@
             requirementDescription: "<h3>Grass-Skip 1",
             effectDescription: "Unlock Grass-Skippers",
             done() { return player.gs.grassSkip.gte(1) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         12: {
             requirementDescription: "<h3>Grass-Skip 2",
             effectDescription() { return "Replicanti Points boost themselves at a reduced rate.<br>Currently: " + format(player.gs.milestone2Effect)+"x" },
             done() { return player.gs.grassSkip.gte(2) },
-            style: {width: "600px", height: "70px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         13: {
             requirementDescription: "<h3>Grass-Skip 3",
             effectDescription() { return "Autobuy perk buyables." },
             done() { return player.gs.grassSkip.gte(3) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         14: {
             requirementDescription: "<h3>Grass-Skip 4",
             effectDescription() { return "Keep repli-grass content on reset." },
             done() { return player.gs.grassSkip.gte(4) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         15: {
             requirementDescription: "<h3>Grass-Skip 7",
             effectDescription() { return "Gain 10% of anonymity per second." },
             done() { return player.gs.grassSkip.gte(7) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         16: {
             requirementDescription: "<h3>Grass-Skip 11",
             effectDescription() { return "Autobuy repli-tree buyables." },
             done() { return player.gs.grassSkip.gte(11) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         17: {
             requirementDescription: "<h3>Grass-Skip 15",
             effectDescription() { return "Unlocks oil." },
             done() { return player.gs.grassSkip.gte(15) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         18: {
             requirementDescription: "<h3>Grass-Skip 20",
             effectDescription() { return "Grass-Skips above 19 (ignoring additive) boost pollinator gain.<br>Currently: " + format(player.gs.milestone8Effect)+"x" },
             done() { return player.gs.grassSkip.gte(20) },
-            style: {width: "600px", height: "70px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         19: {
             requirementDescription: "<h3>Grass-Skip 30",
             effectDescription() { return "Gain 500% of all alternate rank currencies per second." },
             done() { return player.gs.grassSkip.gte(30) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         20: {
             requirementDescription: "<h3>Grass-Skip 40",
             effectDescription() { return "Grass-Skips above 39 (ignoring additive) boost linking power gain.<br>Currently: " + format(player.gs.milestone10Effect)+"x" },
             done() { return player.gs.grassSkip.gte(40) },
-            style: {width: "600px", height: "70px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         21: {
             requirementDescription: "<h3>Grass-Skip 50",
             effectDescription() { return "Slightly reduce Repli-Grass softcap scaling." },
             done() { return player.gs.grassSkip.gte(50) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
         22: {
             requirementDescription: "<h3>Grass-Skip 60",
             effectDescription() { return "Improve Grass-Skip milestone 8's effect." },
             done() { return player.gs.grassSkip.gte(60) },
-            style: {width: "600px", height: "55px", color: "rgba(0,0,0,0.5)", border: "5px solid rgba(0,0,0,0.5)", borderRadius: "10px", margin: "-2.5px"},
+            style() {
+                let look = {width: "500px", minHeight: "75px", color: "black", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px"}
+                if (hasMilestone(this.layer, this.id)) {look.backgroundColor = "#77bf5f"} else {look.backgroundColor = "#bf8f8f"}
+                return look
+            },
         },
     },
     challenges: {
@@ -603,20 +651,83 @@
                         ["clickable", 11],
                     ], {width: "800px", height: "100px", backgroundColor: "#162e5e", border: "3px solid #0c1a36", borderRadius: "15px"}],
                     ["blank", "25px"],
-                    ["raw-html", "Milestones", {color: "white", fontSize: "24px", fontFamily: "monospace"}],
-                    ["blank", "5px"],
-                    ["milestone", 11],
-                    ["milestone", 12],
-                    ["milestone", 13],
-                    ["milestone", 14],
-                    ["milestone", 15],
-                    ["milestone", 16],
-                    ["milestone", 17],
-                    ["milestone", 18],
-                    ["milestone", 19],
-                    ["milestone", 20],
-                    ["milestone", 21],
-                    ["milestone", 22],
+                    ["style-row", [
+                        ["raw-html", () => {return "Milestones"}, {color: "rgba(0,0,0,0.6)", fontSize: "24px", fontFamily: "monospace"}],
+                    ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRadius: "13px 13px 0px 0px", width: "588px", height: "40px"}],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "1", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 11],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "2", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 12],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "3", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 13],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "4", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 14],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "7", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 15],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "11", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 16],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "15", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 17],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "20", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 18],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "30", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 19],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "40", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 20],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "50", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 21],
+                    ]],
+                    ["style-row", [
+                        ["style-column", [
+                            ["raw-html", "60", {color: "rgba(0,0,0,0.6)", fontSize: "32px", fontFamily: "monospace"}],
+                        ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderRight: "0px", borderTop: "0px", borderRadius: "0px", width: "75px", height: "75px"}],
+                        ["titleless-milestone", 22],
+                    ]],
+                    ["style-row", [
+                    ], {backgroundColor: "#bfc66a", border: "3px solid #989e54", borderTop: "0px", borderRadius: "0px 0px 13px 13px", width: "588px", height: "10px"}],
                 ]
             },
             "Grass-Skippers": {

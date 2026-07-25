@@ -286,7 +286,7 @@
     },
     clickables: {
         11: {
-            title() { return "<h2>Reset ALL AU1 content for enhance points.</h3>" },
+            title() { return "<h2>Reset ALL AU1 content for enhance points.</h2><br><h3>(Based on apathy)</h3>" },
             canClick() { return player.en.enhancePointsToGet.gte(1) },
             unlocked() { return true },
             onClick() {
@@ -468,19 +468,45 @@
     upgrades: {
         //upgrades for jocus essence automation, apathy automation, other boosts
         11: {
-            title: "Focus Jocus",
+            // title: "Focus Jocus",
             unlocked() { return true },
-            description: "Earn 25% of jocus essence per second while in fear challenge.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #b82fbd; border-radius: 50%; color: #000000;'>1</span> Focus Jocus</h2><br><br>" + // top
+                "Earn 25% of jocus essence per second while in fear challenge.<br><br>" + // middle 
+                "Cost: <h3>100</h3> Enhance Points" + // bottom
+                "</div>"
+            },
+            // description: "Earn 25% of jocus essence per second while in fear challenge.",
             cost: new Decimal(100),
             currencyLocation() { return player.en },
             currencyDisplayName: "Enhance Points",
             currencyInternalName: "enhancePoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px", },
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         12: {
-            title: "Essence Weakener",
+            // title: "Essence Weakener",
             unlocked() { return true },
-            description: "Jocus essence weakens repli-leaf softcap, jocus essence and fear is always gained.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #b82fbd; border-radius: 50%; color: #000000;'>2</span> Essence Weakener</h2><br><br>" + // top
+                "Jocus essence weakens repli-leaf softcap, jocus essence and fear is always gained. (^" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle
+                "Cost: <h3>2,222</h3> Enhance Points" + // bottom
+                "</div>"
+            },
+            // description: "Jocus essence weakens repli-leaf softcap, jocus essence and fear is always gained.",
             cost: new Decimal(2222),
             currencyLocation() { return player.en },
             currencyDisplayName: "Enhance Points",
@@ -489,22 +515,59 @@
                 return Decimal.div(1, player.fu.jocusEssence.pow(0.2).add(1))
             },
             effectDisplay() { return "^" + formatSimple(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px", width: "150px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         13: {
-            title: "Next Enhancer",
+            // title: "Next Enhancer",
             unlocked() { return true },
-            description: "Unlocks the next enhancer, and raises the first replicanti point softcap effect by ^0.01.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #b82fbd; border-radius: 50%; color: #000000;'>3</span> Next Enhancer</h2><br><br>" + // top
+                "Unlocks the next enhancer, and raises the first replicanti point softcap effect by ^0.01.<br><br>" + // middle
+                "Cost: <h3>9,999</h3> Enhance Points" + // bottom
+                "</div>"
+            },
+            // description: "Unlocks the next enhancer, and raises the first replicanti point softcap effect by ^0.01.",
             cost: new Decimal(9999),
             currencyLocation() { return player.en },
             currencyDisplayName: "Enhance Points",
             currencyInternalName: "enhancePoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px", width: "150px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         14: {
-            title: "Apathetic Enhancement",
+            // title: "Apathetic Enhancement",
             unlocked() { return true },
-            description: "Apathy boosts enhncer XP gain.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #b82fbd; border-radius: 50%; color: #000000;'>4</span> Apathetic Enhancement</h2><br><br>" + // top
+                "Apathy boosts enhancer XP gain. (x" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle
+                "Cost: <h3>33,333</h3> Enhance Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(33333),
             currencyLocation() { return player.en },
             currencyDisplayName: "Enhance Points",
@@ -513,12 +576,30 @@
                 return player.fu.apathy.pow(0.1).div(5).add(1)
             },
             effectDisplay() { return "x" + format(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px",},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         15: {
-            title: "Emotional Enhancer",
+            // title: "Emotional Enhancer",
             unlocked() { return true },
-            description: "Unlocks the third enhancer, and fear raises first 3 emotion effects.", //MAKE THIS ENHANCER PLEASE
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #b82fbd; border-radius: 50%; color: #000000;'>5</span> Emotional Enhancer</h2><br><br>" + // top
+                "Unlocks the third enhancer, and fear raises first 3 emotion effects. (^" + format(upgradeEffect(this.layer, this.id)) + ")<br><br>" + // middle
+                "Cost: <h3>100,000</h3> Enhance Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(100000),
             currencyLocation() { return player.en },
             currencyDisplayName: "Enhance Points",
@@ -527,7 +608,19 @@
                 return player.fu.fear.pow(0.1).div(4).add(1)
             },
             effectDisplay() { return "^" + format(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px", width: "150px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "300px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
     },
     buyables: {
@@ -546,10 +639,20 @@
                     ["blank", "25px"],
                     ["row", [
                     ["upgrade", 11],
+                    ["blank", "10px"],
                     ["upgrade", 12],
+                    ["blank", "10px"],
                     ["upgrade", 13],
+                    ["blank", "10px"],
+                    ]],
+                    ["blank", "10px"],
+                    ["row", [
                     ["upgrade", 14],
+                    ["blank", "10px"],
                     ["upgrade", 15],
+                    ["blank", "10px"],
+                    // ["upgrade", 16],
+                    // ["blank", "10px"],
                     ]],
                 ]
             },
@@ -604,7 +707,7 @@
                 }],
             ]],
         ["raw-html", () => {return "Divides replicanti point cooldown by <h3>/" + format(player.en.enhancePointsEffect) + "</h3>."}, {color: "white", fontSize: "16px", fontFamily: "monospace"}],
-        ["raw-html", () => {return "(Based on Apathy)"}, {color: "white", fontSize: "16px", fontFamily: "monospace"}],
+        // ["raw-html", () => {return "(Based on Apathy)"}, {color: "white", fontSize: "16px", fontFamily: "monospace"}],
         ["microtabs", "stuff", { 'border-width': '0px' }],
         ["blank", "25px"],
     ],

@@ -221,79 +221,221 @@
     },
     upgrades: {
         11: {
-            title: "Feature I",
+            // title: "Feature I",
             unlocked() { return true },
-            description: "Unlocks Alt-Ranks.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "1" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Alt-Ranks.<br><br>" + // middle 
+                "Cost: <h3>2</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
+            // description: "Unlocks Alt-Ranks.",
             cost: new Decimal(2),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         12: {
-            title: "Feature II",
             unlocked() { return true },
-            description: "Unlocks Perks.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "2" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Perks.<br><br>" + // middle 
+                "Cost: <h3>2,500</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(2500),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         13: {
-            title: "Feature III",
             unlocked() { return true },
-            description: "Unlocks Tetr Points.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "3" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Tetr Points.<br><br>" + // middle 
+                "Cost: <h3>75,000</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(75000),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         14: {
-            title: "Feature IV",
             unlocked() { return true },
-            description: "Unlocks Anonymity.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "4" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Anonymity.<br><br>" + // middle 
+                "Cost: <h3>3,000,000</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(3e6),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         15: {
-            title: "Feature V",
             unlocked() { return true },
-            description: "Unlocks Repli-Trees.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "5" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Repli-Trees.<br><br>" + // middle 
+                "Cost: <h3>1.00e20</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e20),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         16: {
-            title: "Feature VI",
             unlocked() { return true },
-            description: "Unlocks Repli-Grass.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "6" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Repli-Grass.<br><br>" + // middle 
+                "Cost: <h3>1.00e30</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e30),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         17: {
-            title: "Feature VII",
             unlocked() { return true },
-            description: "Unlocks Grass-Skip.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "7" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Grass-Skip.<br><br>" + // middle 
+                "Cost: <h3>1.00e40</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e40),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         18: {
-            title: "Feature VIII",
             unlocked() { return true },
-            description: "Escape Cantepocalypse, and unlock more oil content.",
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "8" + 
+                "</span></h2><br><br>" + // top
+                "ESCAPE CANTEPOCALYPSE, and unlock more oil content.<br><br>" + // middle 
+                "Cost: <h3>1.00e90</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e90),
             onPurchase() {
                 player.cp.cantepocalypseActive = false
@@ -301,17 +443,48 @@
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
         19: {
-            title: "Feature IX",
-            unlocked() { return hasMilestone("s", 17) },
-            description: "Unlocks Funify.",
+            unlocked() { return true },
+            fullDisplay() {
+                return  "<div>" +
+                "<h2><span style='display: inline-block; width: 25px; border: 2px solid #000000; background-color: #339988; border-radius: 50%; color: #000000;'>" + 
+                "9" + 
+                "</span></h2><br><br>" + // top
+                "Unlock Funify.<br><br>" + // middle 
+                "Cost: <h3>1.00e125</h3> Replicanti Points" + // bottom
+                "</div>"
+            },
             cost: new Decimal(1e125),
             currencyLocation() { return player.cp },
             currencyDisplayName: "Replicanti Points",
             currencyInternalName: "replicantiPoints",
-            style: {color: "rgba(0,0,0,0.8)", border: "3px solid rgba(0,0,0,0.5)", borderRadius: "15px", margin: "2px"},
+            style() {
+                let look = {
+                    color: "#000000bf", 
+                    borderColor: "#0000007f",
+                    fontSize: "14px", 
+                    borderWidth: "2px", 
+                    borderRadius: "10px", 
+                    padding: "5px", 
+                    width: "200px", 
+                    height: "150px"
+                }
+                return look
+            },
         },
     },
     buyables: {},
@@ -325,8 +498,11 @@
                 unlocked() { return true },
                 content: [
                     ["blank", "25px"],
-                    ["style-row", [["upgrade", 11], ["upgrade", 12], ["upgrade", 13], ["upgrade", 14], ["upgrade", 15], ["upgrade", 16],
-                        ["upgrade", 17], ["upgrade", 18], ["upgrade", 19]], {maxWidth: "800px"}],
+                    ["style-row", [["upgrade", 11], ["blank", "10px"], ["upgrade", 12], ["blank", "10px"], ["upgrade", 13]], {maxWidth: "800px"}],
+                    ["blank", "10px"],
+                    ["style-row", [["upgrade", 14], ["blank", "10px"], ["upgrade", 15], ["blank", "10px"], ["upgrade", 16]], {maxWidth: "800px"}],
+                    ["blank", "10px"],
+                    ["style-row", [["upgrade", 17], ["blank", "10px"], ["upgrade", 18], ["blank", "10px"], ["upgrade", 19]], {maxWidth: "800px"}],
                 ]
             },
             "Softcap": {
