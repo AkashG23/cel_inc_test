@@ -40,6 +40,10 @@
         }
     },
     nodeStyle() {
+        return {
+            color: "#0000007f",
+            borderColor: "#0000007f",
+        }
     },
     tooltip: "Grass-Skip",
     branches: ["rg"],
