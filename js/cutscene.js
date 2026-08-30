@@ -1448,6 +1448,7 @@
                 { text: "The woman disappears into thin air.", },
                 { text: "You are left speechless.", },
                 { text: "You don't know what to think about this situation...", },
+                // { text: "<h2>~ END OF ACT 1 A ~</h2>", },
             ],
         },
         "U3-Start": {
@@ -2352,6 +2353,7 @@
                 { text: "You find scattered fragments of singularity cores throughout the land. You pick a piece up." },
                 { text: "Interesting... Maybe this can help us.", portrait: "resources/player.png"  },
                 { text: "Another celestial has been defeated, and many more are waiting." },
+                // { text: "<h2>~ END OF ACT 1 B ~</h2>", },
             ],
         },
         "BH-Stagnant-Synestia-Intro": {
