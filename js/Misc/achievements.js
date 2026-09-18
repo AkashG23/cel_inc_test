@@ -863,7 +863,7 @@ addLayer("achievements", {
         },
         407: {
             name: "Cante's Domain?",
-            image: "resources/achievements/5/5_00.png",
+            image: "resources/achievements/5/5_07.png",
             tooltip: "<h3>Cante's Domain?</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
@@ -1635,6 +1635,7 @@ addLayer("achievements", {
                 ["style-row", [
                     ["category-button", ["~ 4 ~<br><h6>Break Infinity</h6>", "stars", 4], {width: "155px", height: "40px", color: "#2b7f0a", background: "#113204", borderRight: "3px solid white"}],
                 ], () => {return tmp.achievements.microtabs.stars[4].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
+                */
                 ["style-row", [
                     ["category-button", ["~ 5 ~<br><h6>Cante</h6>", "stars", 5], {width: "155px", height: "40px", color: "#43aad9", background: "#032737", borderRight: "3px solid white"}],
                 ], () => {return tmp.achievements.microtabs.stars[5].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
