@@ -28,7 +28,7 @@
  		"Zar/wheelOfFortune.js", "Check Back/singularityPet.js", "Zar/slotMachine.js", "Zar/checkBackShrine.js", "Zar/ascensionRitual.js", "Zar/cards.js", "Cantepocalypse/enhance.js",
 		"Black Heart/blackHeart.js", "Black Heart/blackHeartFunctions.js", "Black Heart/characters.js", "Black Heart/skills.js", "Black Heart/depth1.js",
 		"Black Heart/depth2.js", "Black Heart/depth3.js", "Black Heart/matosLair.js", "Black Heart/darkTemple.js", "Black Heart/bulletHell.js",
-		"Black Heart/stagnantSynestia.js", "Black Heart/depth4.js", "Black Heart/alephsChamber.js", "Black Heart/laboratory.js", "DarkU1/grassJump.js",
+		"Black Heart/stagnantSynestia.js", "Black Heart/discreteDissociation.js", "Black Heart/depth4.js", "Black Heart/alephsChamber.js", "Black Heart/laboratory.js", "DarkU1/grassJump.js",
 		"Hive/nest.js", "Check Back/gwaTemple.js", "Zar/zarDungeon.js", "Black Heart/creation.js", "DarkU1/rerollPoints.js",
 		"Check Back/diamondDust.js", "Check Back/treasureRoom.js",
 
@@ -278,6 +278,10 @@ function updateStyles() {
 				case "stagnantSynestia":
 					layerBG = "linear-gradient(-90deg, #124, #081122)"
 					if (player.bh.combo.lt(0)) layerBG = "radial-gradient(#00000066, #22226666), linear-gradient(-90deg, #124, #081122)"
+					break;
+				case "discreteDissociation":
+					layerBG = "linear-gradient(-90deg, #2b1145, #140821)"
+					if (player.bh.combo.lt(0)) layerBG = "radial-gradient(#00000066, #22226666), linear-gradient(-90deg, #2b1145, #140821)"
 					break;
 				case "depth4":
 					layerBG = "linear-gradient(-180deg, #980098 0%, #590059 100%)"
@@ -1122,6 +1126,16 @@ let credits = `<h1>Credits:</h1><br>
 let changelog = `<h1>Changelog:</h1><br>
 
 	<h2 style='color:#ff3f3f'>MAJOR SPOILERS BELOW</h2><br><br>
+	<h3>v1.14.2 - Akash's Mini-Update II: Discontinuity</h3><br>
+		Content:<br>
+			- Added page 5 of achievements. [WIP] <br>
+			- Added stage 2 of the temporal chasm. [WIP] <br>
+			- Added a new evolution pet. [WIP, MAY NEED TO BE PUSHED BACK] <br>
+			- ???
+		Minor Changes:<br>
+			- Changed up the looks of some AU1 upgrades. <br>
+			- ??? <br>
+		<br>
 	<h3>v1.14 - The Interspace Update Part I: A Change of Space</h3><br>
 		Content:<br>
 			- Added universe δ.<br>

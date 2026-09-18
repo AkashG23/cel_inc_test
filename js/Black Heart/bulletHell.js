@@ -1443,6 +1443,25 @@ BHB.inverseRain = {
     },
 }
 
+BHB.leftToRightRain = {
+    //bulletHell({"leftToRightRain": {bulletPerSec: 10}}, {duration: 12})
+    moveFunc(info, ticks, id) {
+        // Rain Bullets
+        const bulletRadius = info.actions[id].bulletRadius ?? 12;
+        const bulletSpeed = 4;
+        if (!info.actions[id].lastTime) info.actions[id].lastTime = ticks;
+        const bulletsToSpawn = Math.floor(((ticks - info.actions[id].lastTime) / 1000) * info.actions[id].bulletPerSec); // LAST NUMBER IS AMOUNT OF BULLETS PER SECOND
+        for (let i = 0; i < bulletsToSpawn; i++) {
+            let bx = window.innerWidth + bulletRadius; 
+            let by = Math.random() * info.height + info.boxTop;
+            let bul = {x: bx, y: by, vx: bulletSpeed, vy: 0, r: bulletRadius, draw(b, bossCtx) {bossCtx.beginPath();bossCtx.arc(b.x, b.y, b.r, 0, 2 * Math.PI);bossCtx.fillStyle = "#fff";bossCtx.fill()}}
+            info.bullets.push(bul);
+        }
+        if (bulletsToSpawn > 0) info.actions[id].lastTime = ticks;
+        return info
+    },
+}
+
 BHB.movingCircleRadialBurstAttack = {
     //bulletHell({"movingCircleRadialBurstAttack": {circleAmount: 1, burstInterval: 1200, bulletsPerBurst: 18, enemySpeed: 6, bulletSpeed: 5}}, {duration: 12})
     codeFunc(info, id) {
@@ -3567,5 +3586,36 @@ BHB.zarUltimateAttack = {
         }
 
         return info;
+    },
+}
+
+BHB.omniRain = {
+    //bulletHell({"omniRain": {bulletPerSec: 3}}, {duration: 12})
+    moveFunc(info, ticks, id) {
+        // Rain Bullets
+        const bulletRadius = info.actions[id].bulletRadius ?? 12;
+        const bulletSpeed = info.actions[id].bulletSpeed ?? 4;
+        if (!info.actions[id].lastTime) info.actions[id].lastTime = ticks;
+        const bulletsToSpawn = Math.floor(((ticks - info.actions[id].lastTime) / 1000) * info.actions[id].bulletPerSec); // LAST NUMBER IS AMOUNT OF BULLETS PER SECOND
+        for (let i = 0; i < bulletsToSpawn; i++) {
+            let bx = Math.random() * info.width + info.boxLeft;
+            let by = -bulletRadius;
+            let bul = {x: bx, y: by, vx: 0, vy: bulletSpeed, r: bulletRadius, draw(b, bossCtx) {bossCtx.beginPath();bossCtx.arc(b.x, b.y, b.r, 0, 2 * Math.PI);bossCtx.fillStyle = "#fff";bossCtx.fill()}}
+            info.bullets.push(bul);
+            let bx2 = Math.random() * info.width + info.boxLeft;
+            let by2 = window.innerHeight + bulletRadius;
+            let bul2 = {x: bx2, y: by2, vx: 0, vy: -bulletSpeed, r: bulletRadius, draw(b, bossCtx) {bossCtx.beginPath();bossCtx.arc(b.x, b.y, b.r, 0, 2 * Math.PI);bossCtx.fillStyle = "#fff";bossCtx.fill()}}
+            info.bullets.push(bul2);
+            let bx3 = window.innerWidth + bulletRadius;
+            let by3 = Math.random() * info.height + info.boxTop
+            let bul3 = {x: bx3, y: by3, vx: -bulletSpeed, vy: 0, r: bulletRadius, draw(b, bossCtx) {bossCtx.beginPath();bossCtx.arc(b.x, b.y, b.r, 0, 2 * Math.PI);bossCtx.fillStyle = "#fff";bossCtx.fill()}}
+            info.bullets.push(bul3);
+            let bx4 = 0;
+            let by4 = Math.random() * info.height + info.boxTop;
+            let bul4 = {x: bx4, y: by4, vx: bulletSpeed, vy: 0, r: bulletRadius, draw(b, bossCtx) {bossCtx.beginPath();bossCtx.arc(b.x, b.y, b.r, 0, 2 * Math.PI);bossCtx.fillStyle = "#fff";bossCtx.fill()}}
+            info.bullets.push(bul4);
+        }
+        if (bulletsToSpawn > 0) info.actions[id].lastTime = ticks;        // Rain Bullets
+        return info
     },
 }

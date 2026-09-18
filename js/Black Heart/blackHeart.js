@@ -136,6 +136,9 @@ BH_CURRENCY = {
     "matosEssence": ["Matos Essence", "laboratory"],
     "pips": ["Pips", "zd"],
     "paragonShards": ["Paragon Shards", "cb"],
+    "temporalEssence": ["Temporal Essence", "discreteDissociation"],
+    "liquidClockwork": ["Liquid Clockwork", "discreteDissociation"],
+    "ascensionShards": ["Shards of Ascension", "cbs"],
 }
 
 // Celestialite who has there explosion value equal to their max health, and an action that constantly reduces their max health called defuse (FOR LAB)
@@ -144,7 +147,7 @@ addLayer("bh", {
     name: "Black Heart", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "BH", // This appears on the layer's node. Default is the id with the first letter capitalized
     universe: "BH",
-    innerNodes: [["darkTemple", "depth1", "depth2"], ["matosLair", "depth3"], ["laboratory", "depth4", "alephsChamber"], ["stagnantSynestia"]],
+    innerNodes: [["darkTemple", "depth1", "depth2"], ["matosLair", "depth3"], ["laboratory", "depth4", "alephsChamber"], ["stagnantSynestia"], ["discreteDissociation"]],
     innerLayer() {return player.subtabs["bh"]["stages"]},
     row: 1,
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
@@ -639,6 +642,9 @@ addLayer("bh", {
         stagnantTimer: new Decimal(0),
         stagnantAuto: false,
 
+        // Non-Smooth Time
+        nonSmoothStopped: false,
+
         // General Variables
         autoEnter: false,
         autoExit: false,
@@ -777,7 +783,7 @@ addLayer("bh", {
         }
 
         let unpaused = false
-        if (BHS[player.bh.currentStage].timeStagnation) {
+        if (BHS[player.bh.currentStage].timeStagnation || BHS[player.bh.currentStage].nonSmooth) {
             unpaused = player.bh.respawnTimer.gt(0)
         } else {
             unpaused = !player.bh.bhPause
@@ -794,7 +800,7 @@ addLayer("bh", {
 
         if (BHS[player.bh.currentStage].timer || BHC[player.bh.celestialite.id].timer) {
             if (!document.getElementById("flash-overlay")) player.bh.timerStop = false
-            if (unpaused && !BHS[player.bh.currentStage].timeStagnation && !player.bh.timerStop) player.bh.timer = player.bh.timer.add(normTime)
+            if (unpaused && !BHS[player.bh.currentStage].timeStagnation && !BHS[player.bh.currentStage].nonSmooth && !player.bh.timerStop) player.bh.timer = player.bh.timer.add(normTime)
             if (BHS[player.bh.currentStage].timer && player.bh.timer.gte(run(BHS[player.bh.currentStage].timer, BHS[player.bh.currentStage]))) {
                 for (let i = 0; i < 3; i++) {
                     player.bh.characters[i].health = new Decimal(-Infinity)
@@ -1627,8 +1633,14 @@ addLayer("bh", {
             player.bh.stagnantTimer = player.bh.stagnantTimer.sub(delta)
             if (BHS[player.bh.currentStage].timeStagnation && player.bh.stagnantAuto) {
                 if (player.bh.stagnantTimer.gte(Decimal.mul(player.bh.stagnantTimer, 2))) {
-                    stagnantUpdate(5)
+                    stagnantUpdate(5, 5)
                     player.bh.stagnantTimer = new Decimal(10)
+                }
+            }
+            if (BHS[player.bh.currentStage].nonSmooth && !player.bh.nonSmoothStopped && player.bh.celestialite.id != "none") {
+                if (player.bh.stagnantTimer.gte(Decimal.mul(player.bh.stagnantTimer, 2))) {
+                    stagnantUpdate(2.5, 5)
+                    player.bh.stagnantTimer = new Decimal(2.5)
                 }
             }
         }
@@ -1766,8 +1778,8 @@ addLayer("bh", {
             },
         },
         "Pause": {
-            title() { return BHS[player.bh.currentStage].timeStagnation ? "Always Paused" : player.bh.bhPause ? "Unpause" : "Pause" },
-            canClick() {return !BHS[player.bh.currentStage].timeStagnation},
+            title() { return BHS[player.bh.currentStage].timeStagnation ? "Always Paused" : BHS[player.bh.currentStage].nonSmooth ? "Can't Pause" : player.bh.bhPause ? "Unpause" : "Pause" },
+            canClick() {return !BHS[player.bh.currentStage].timeStagnation && !BHS[player.bh.currentStage].nonSmooth},
             unlocked: true,
             onClick() {
                 if (player.bh.bhPause) {
@@ -1778,7 +1790,7 @@ addLayer("bh", {
             },
             style() {
                 let look = {width: "125px", minHeight: "40px", color: "black", border: "3px solid rgba(0,0,0,0.5)", backgroundColor: "white", borderRadius: "15px"}
-                if (player.bh.bhPause || BHS[player.bh.currentStage].timeStagnation) look.backgroundColor = "#888"
+                if (player.bh.bhPause || BHS[player.bh.currentStage].timeStagnation || BHS[player.bh.currentStage].nonSmooth) look.backgroundColor = "#888"
                 return look
             },
         },
@@ -1820,7 +1832,7 @@ addLayer("bh", {
             canClick() {return player.bh.stagnantTimer.lte(0)},
             unlocked() {return BHS[player.bh.currentStage].timeStagnation},
             onClick() {
-                stagnantUpdate(5)
+                stagnantUpdate(5, 5)
                 player.bh.stagnantTimer = new Decimal(10)
             },
             style() {
@@ -1844,6 +1856,22 @@ addLayer("bh", {
             style() {
                 let look = {width: "46px", minHeight: "46px", background: "linear-gradient(to right, #094394, #053a54)", color: "#ccd8ff", fontSize: "8px", border: "4px solid #021924", borderRadius: "10px", marginLeft: "-4px"}
                 if (!player.bh.stagnantAuto) look.filter = "brightness(50%)"
+                return look
+            },
+        },
+        "Non-Smooth-Stop": {
+            title() {return player.bh.nonSmoothStopped ? "Start Ticking" : "Stop Ticking"},
+            canClick: true,
+            unlocked() {return BHS[player.bh.currentStage].nonSmooth},
+            onClick() {
+                if (player.bh.nonSmoothStopped) {
+                    player.bh.nonSmoothStopped = false
+                } else {
+                    player.bh.nonSmoothStopped = true
+                }
+            },
+            style() {
+                let look = {width: "171px", minHeight: "46px", background: "linear-gradient(to right, #430994, #120554)", color: "#ebccff", fontSize: "10px", border: "4px solid #070224", borderRadius: "10px", marginLeft: "-4px"}
                 return look
             },
         },
@@ -4221,6 +4249,10 @@ addLayer("bh", {
                 unlocked: true,
                 embedLayer: 'stagnantSynestia',
             },
+            "discreteDissociation": {
+                unlocked: true,
+                embedLayer: 'discreteDissociation',
+            },
             "depth4": {
                 unlocked: true,
                 embedLayer: "depth4",
@@ -4881,6 +4913,12 @@ addLayer("bh", {
                                     ["clickable", "Stagnant-Auto"],
                                 ]],
                             ], () => {return BHS[player.bh.currentStage].timeStagnation ? {height: "66px"} : {display: "none !important"}}],
+                            ["style-column", [
+                                ["blank", "20px"],
+                                ["row", [
+                                    ["clickable", "Non-Smooth-Stop"],
+                                ]],
+                            ], () => {return BHS[player.bh.currentStage].nonSmooth ? {height: "66px"} : {display: "none !important"}}],
                         ], {width: "250px"}],
                     ]],
                     ["blank", "40px"],

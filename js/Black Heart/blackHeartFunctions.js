@@ -713,6 +713,16 @@ function celestialiteReward(gain) {
         player.zd.pips = player.zd.pips.add(gain.pips)
         bhLog("<span style='color: #a3a3a3'>" + str + "You gained " + formatWhole(gain.pips) + " dice pips! (You have " + formatWhole(player.zd.pips) + ")")
     }
+    if (gain.temporalEssence) {
+        gain.temporalEssence = gain.temporalEssence.mul(player.discreteDissociation.temporalMult).mul(generalMult).floor()
+        player.discreteDissociation.temporalEssence = player.discreteDissociation.temporalEssence.add(gain.temporalEssence)
+        bhLog("<span style='color: #eed200'>" + str + "You gained " + formatWhole(gain.temporalEssence) + " temporal essence! (You have " + formatWhole(player.discreteDissociation.temporalEssence) + ")")
+    }
+    if (gain.liquidClockwork) {
+        gain.liquidClockwork = gain.liquidClockwork.mul(player.discreteDissociation.liquidMult).mul(generalMult).floor()
+        player.discreteDissociation.liquidClockwork = player.discreteDissociation.liquidClockwork.add(gain.liquidClockwork)
+        bhLog("<span style='color: #eed200'>" + str + "You gained " + formatWhole(gain.liquidClockwork) + " liquid clockwork! (You have " + formatWhole(player.discreteDissociation.liquidClockwork) + ")")
+    }
 }
 
 function celestialiteDeath() {
@@ -1098,9 +1108,9 @@ function screenFlash(message, duration) {
     }, duration);
 }
 
-function stagnantUpdate(time) {
-    let delta = time/5
-    for (let z = 0; z < 5; z++) {
+function stagnantUpdate(time, ticks) {
+    let delta = time/ticks
+    for (let z = 0; z < ticks; z++) {
         setTimeout(() => {
             // Check if in stage
             if (player.bh.currentStage != "none") {
