@@ -810,10 +810,9 @@ addLayer("achievements", {
         401: {
             name: "The Exiled One",
             image: "resources/achievements/5/5_01.png",
-            tooltip: "<h3>The Exiled One</h3><hr style='margin-bottom:4px'>Unlock replicanti.<br><br>Reward: TBD",
+            tooltip: "<h3>The Exiled One</h3><hr style='margin-bottom:4px'>Unlock replicanti.",
             color: "#43aad9",
             unlocked: true,
-            marked: true,
             complete() {return false},
         },
         402: {
@@ -828,7 +827,7 @@ addLayer("achievements", {
         403: {
             name: "Familiar Faces",
             image: "resources/achievements/5/5_03.png",
-            tooltip: "<h3>Familiar Faces</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>Familiar Faces</h3><hr style='margin-bottom:4px'>Complete the second<br>goals of the first four<br>infinity challenges.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
@@ -837,7 +836,7 @@ addLayer("achievements", {
         404: {
             name: "Gwascension",
             image: "resources/achievements/5/5_04.png",
-            tooltip: "<h3>Gwascension</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>Gwascension</h3><hr style='margin-bottom:4px'>Ascend Gwa.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
@@ -846,7 +845,7 @@ addLayer("achievements", {
         405: {
             name: "The Afterlife",
             image: "resources/achievements/5/5_00.png",
-            tooltip: "<h3>The Afterlife</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>The Afterlife</h3><hr style='margin-bottom:4px'>Complete the death<br>realm challenge once.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
@@ -855,7 +854,7 @@ addLayer("achievements", {
         406: {
             name: "Capped Creatures",
             image: "resources/achievements/5/5_00.png",
-            tooltip: "<h3>Capped Creatures</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>Capped Creatures</h3><hr style='margin-bottom:4px'>Cap out your<br>replicanti.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
@@ -864,16 +863,15 @@ addLayer("achievements", {
         407: {
             name: "Cante's Domain?",
             image: "resources/achievements/5/5_07.png",
-            tooltip: "<h3>Cante's Domain?</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>Cante's Domain?</h3><hr style='margin-bottom:4px'>Enter Alt-Uni 1.",
             color: "#43aad9",
             unlocked: true,
-            marked: true,
             complete() {return false},
         },
         408: {
             name: "First Reset, Again",
             image: "resources/achievements/5/5_08.png",
-            tooltip: "<h3>First Reset, Again</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>First Reset, Again</h3><hr style='margin-bottom:4px'>Perform a reset for<br>rank points.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
@@ -882,16 +880,16 @@ addLayer("achievements", {
         409: {
             name: "Slow Rebuilding",
             image: "resources/achievements/5/5_09.png",
-            tooltip: "<h3>Slow Rebuilding</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>Slow Rebuilding</h3><hr style='margin-bottom:4px'>Perform a reset for<br>tier points.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
             complete() {return false},
         },
         410: {
-            name: "akashg23",
+            name: "Incentivization",
             image: "resources/achievements/5/5_10.png",
-            tooltip: "<h3>Title</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>Incentivization</h3><hr style='margin-bottom:4px'>Gain your first<br>perk point.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
@@ -900,7 +898,7 @@ addLayer("achievements", {
         411: {
             name: "T-Spin",
             image: "resources/achievements/5/5_11.png",
-            tooltip: "<h3>T-Spin</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            tooltip: "<h3>T-Spin</h3><hr style='margin-bottom:4px'>Perform a reset for<br>tetr points.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
