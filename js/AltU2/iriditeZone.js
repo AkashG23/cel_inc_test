@@ -190,7 +190,8 @@ SB_zones.iriditeZone = {
         else return "smallAsteroid";
     },
     levelUp(level) {
-        if (level.modulo(20).eq(0)) {
+        // || level.eq(2)
+        if (level.modulo(1).eq(0)) {
             SB_spawnCelestialite("iridite")
         }
     },

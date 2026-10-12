@@ -154,8 +154,6 @@
                 maxCompletions: new Decimal(0),
                 bestCompletions: new Decimal(0),
                 completionEffect: new Decimal(1),
-                pourSafety: false,
-                focusSafety: false,
 
                 focused: false,
 
@@ -173,8 +171,6 @@
                 maxCompletions: new Decimal(0),
                 bestCompletions: new Decimal(0),
                 completionEffect: new Decimal(1),
-                pourSafety: false,
-                focusSafety: false,
 
                 focused: false,
 
@@ -192,8 +188,6 @@
                 maxCompletions: new Decimal(0),
                 bestCompletions: new Decimal(0),
                 completionEffect: new Decimal(1),
-                pourSafety: false,
-                focusSafety: false,
 
                 focused: false,
 
@@ -211,8 +205,6 @@
                 maxCompletions: new Decimal(0),
                 bestCompletions: new Decimal(0),
                 completionEffect: new Decimal(1),
-                pourSafety: false,
-                focusSafety: false,
 
                 focused: false,
 
@@ -380,9 +372,7 @@
             module.timeReq = fountain.getTimeReq()
             module.lightReq = fountain.getLightReq()
             module.completionEffect = fountain.getCompletionEffect()
-            
-            player.wel.fountains[i].pourSafety = false
-            player.wel.fountains[i].focusSafety = false
+
             player.wel.fountains[i].focusTimerMax = player.prj.lightFountainFocusExtension.mul(4).div(Math.pow(2, i - 1))
             if (player.wel.fountains[i].isFocused) {
                 player.wel.fountains[i].focusTimer = player.wel.fountains[i].focusTimer.sub(delta)
@@ -1392,7 +1382,6 @@
             canClick() { return player.prj.focused.lt(player.prj.maxFocused) && !player.wel.modules[1].isFocused},
             unlocked() { return hasUpgrade("wel", 33) },
             onClick() {
-                if (!this.canClick()) return;
                 player.wel.modules[1].isFocused = true
                 player.prj.focused = player.prj.focused.add(1)
                 player.wel.modules[1].focusTimer = player.wel.modules[1].focusTimerMax
@@ -1420,7 +1409,6 @@
             canClick() { return player.prj.focused.lt(player.prj.maxFocused) && !player.wel.modules[2].isFocused},
             unlocked() { return hasUpgrade("wel", 33) },
             onClick() {
-                if (!this.canClick()) return;
                 player.wel.modules[2].isFocused = true
                 player.prj.focused = player.prj.focused.add(1)
                 player.wel.modules[2].focusTimer = player.wel.modules[2].focusTimerMax
@@ -1502,8 +1490,6 @@
             canClick() { return player.prj.focused.lt(player.prj.maxFocused) && player.wel.light.gte(player.wel.fountains[this.id - 2000].lightReq) && !player.wel.fountains[this.id - 2000].focused && !player.wel.fountains[this.id - 2000].isFocused},
             unlocked() { return true },
             onClick() {
-                if (player.wel.fountains[this.id - 2000].pourSafety) return;
-                player.wel.fountains[this.id - 2000].pourSafety = true
                 player.wel.light = player.wel.light.sub(player.wel.fountains[this.id - 2000].lightReq)
                 player.prj.focused = player.prj.focused.add(1)
                 player.wel.fountains[this.id - 2000].focused = true
@@ -1531,8 +1517,6 @@
             canClick() { return player.prj.focused.lt(player.prj.maxFocused) && player.wel.light.gte(player.wel.fountains[this.id - 2000].lightReq) && !player.wel.fountains[this.id - 2000].focused && !player.wel.fountains[this.id - 2000].isFocused},
             unlocked() { return true },
             onClick() {
-                if (player.wel.fountains[this.id - 2000].pourSafety) return;
-                player.wel.fountains[this.id - 2000].pourSafety = true
                 player.wel.light = player.wel.light.sub(player.wel.fountains[this.id - 2000].lightReq)
                 player.prj.focused = player.prj.focused.add(1)
                 player.wel.fountains[this.id - 2000].focused = true
@@ -1560,8 +1544,6 @@
             canClick() { return player.prj.focused.lt(player.prj.maxFocused) && player.wel.light.gte(player.wel.fountains[this.id - 2000].lightReq) && !player.wel.fountains[this.id - 2000].focused && !player.wel.fountains[this.id - 2000].isFocused},
             unlocked() { return true },
             onClick() {
-                if (player.wel.fountains[this.id - 2000].pourSafety) return;
-                player.wel.fountains[this.id - 2000].pourSafety = true
                 player.wel.light = player.wel.light.sub(player.wel.fountains[this.id - 2000].lightReq)
                 player.prj.focused = player.prj.focused.add(1)
                 player.wel.fountains[this.id - 2000].focused = true
@@ -1589,8 +1571,6 @@
             canClick() { return player.prj.focused.lt(player.prj.maxFocused) && player.wel.light.gte(player.wel.fountains[this.id - 2000].lightReq) && !player.wel.fountains[this.id - 2000].focused && !player.wel.fountains[this.id - 2000].isFocused},
             unlocked() { return true },
             onClick() {
-                if (player.wel.fountains[this.id - 2000].pourSafety) return;
-                player.wel.fountains[this.id - 2000].pourSafety = true
                 player.wel.light = player.wel.light.sub(player.wel.fountains[this.id - 2000].lightReq)
                 player.prj.focused = player.prj.focused.add(1)
                 player.wel.fountains[this.id - 2000].focused = true

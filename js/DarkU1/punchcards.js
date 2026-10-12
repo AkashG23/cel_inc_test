@@ -1164,7 +1164,6 @@ addLayer("pu", {
             // CLICK CODE
             unlocked() {return (player.pet.legPetTimers[0].active && player.le.highestReset.gte(4) && hasMilestone("prj", 102)) || this.canClick()},
             canSelect() {return player.pet.legPetTimers[0].active && player.le.resetAmount.gte(4) && hasMilestone("prj", 102)},
-            challengeType: 'Ec',
             canClick() {return getLevelableXP(this.layer, this.id).gt(0) || getLevelableAmount(this.layer, this.id).gt(0) || getLevelableTier(this.layer, this.id, true)},
             onClick() {return layers[this.layer].levelables.index = this.id},
             // LEVEL CODE
@@ -1985,7 +1984,6 @@ addLayer("pu", {
             // CLICK CODE
             unlocked() {return (player.pet.legPetTimers[0].active && hasMilestone("prj", 103) && player.le.highestReset.gte(4)) || this.canClick()},
             canSelect() {return player.pet.legPetTimers[0].active && hasMilestone("prj", 103) && player.le.resetAmount.gte(4)},
-            challengeType: 'Ec',
             canClick() {return getLevelableXP(this.layer, this.id).gt(0) || getLevelableAmount(this.layer, this.id).gt(0) || getLevelableTier(this.layer, this.id, true)},
             onClick() {return layers[this.layer].levelables.index = this.id},
             // LEVEL CODE
@@ -2039,7 +2037,6 @@ addLayer("pu", {
             // CLICK CODE
             unlocked() {return (player.pet.legPetTimers[0].active && hasMilestone("prj", 104) && player.le.highestReset.gte(4)) || this.canClick()},
             canSelect() {return player.pet.legPetTimers[0].active && hasMilestone("prj", 104) && player.le.resetAmount.gte(4)},
-            challengeType: 'Ec',
             canClick() {return getLevelableXP(this.layer, this.id).gt(0) || getLevelableAmount(this.layer, this.id).gt(0) || getLevelableTier(this.layer, this.id, true)},
             onClick() {return layers[this.layer].levelables.index = this.id},
             // LEVEL CODE

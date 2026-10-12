@@ -1342,85 +1342,103 @@ addLayer("achievements", {
             complete() {return false},
             unlocked: true,
             marked: true,
-        },/*
+        },
         1216: {
-            name: "Ultraviolet",
-            image: "resources/achievements/12_16.png",
-            tooltip: "<h3>Ultraviolet</h3><hr style='margin-bottom:4px'>Reset for starlight.",
+            //name: "Ultraviolet",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>Ultraviolet</h3><hr style='margin-bottom:4px'>Reset for starlight.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
         },
         1217: {
-            name: "awwww kitty!!!",
-            image: "resources/achievements/12_17.png",
-            tooltip: "<h3>awwww kitty!!!</h3><hr style='margin-bottom:4px'>Unlock goobert.<br><br>Reward: Fragment<br>shop cooldowns<br>are 2% shorter.",
+            //name: "awwww kitty!!!",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>awwww kitty!!!</h3><hr style='margin-bottom:4px'>Unlock goobert.<br><br>Reward: Fragment<br>shop cooldowns<br>are 2% shorter.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
-            marked: true,
+            //marked: true,
         },
         1218: {
-            name: "okay this is getting ridiculous",
-            image: "resources/achievements/12_18.png",
-            tooltip: "<h3>okay this is getting<br>ridiculous</h3><hr style='margin-bottom:4px'>Get at least 1 ↻ for each<br>of the first twelve<br>pyramid fountains.<br><br>Reward: Pyramid fountains<br>are 20% cheaper.",
+            //name: "okay this is getting ridiculous",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>okay this is getting<br>ridiculous</h3><hr style='margin-bottom:4px'>Get at least 1 ↻ for each<br>of the first twelve<br>pyramid fountains.<br><br>Reward: Pyramid fountains<br>are 20% cheaper.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
-            marked: true,
+            //marked: true,
         },
         1219: {
-            name: "Outerspace",
-            image: "resources/achievements/12_19.png",
-            tooltip: "<h3>Outerspace</h3><hr style='margin-bottom:4px'>Enter space zone<br>IV.<br><br>Reward: +2 max<br>ship health.",
+            //name: "Outerspace",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>Outerspace</h3><hr style='margin-bottom:4px'>Enter space zone<br>IV.<br><br>Reward: +2 max<br>ship health.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
-            marked: true,
+            //marked: true,
         },
         1220: {
-            name: "Advanced Classes",
-            image: "resources/achievements/12_20.png",
-            tooltip: "<h3>Advanced Classes</h3><hr style='margin-bottom:4px'>Get a project study ↻.",
+            //name: "Advanced Classes",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>Advanced Classes</h3><hr style='margin-bottom:4px'>Get a project study ↻.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
         },
         1221: {
-            name: "The Abyss",
-            image: "resources/achievements/12_21.png",
-            tooltip: "<h3>The Abyss</h3><hr style='margin-bottom:4px'>Obtain a ε ↻.<br><br>Reward: Gain 20%<br>more starlight.",
+            //name: "The Abyss",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>The Abyss</h3><hr style='margin-bottom:4px'>Obtain a ε ↻.<br><br>Reward: Gain 20%<br>more starlight.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
-            marked: true,
+            //marked: true,
         },
         1222: {
-            name: "Omen of Light",
-            image: "resources/achievements/12_22.png",
-            tooltip: "<h3>Omen of Light</h3><hr style='margin-bottom:4px'>Get at least 1 ↻ for<br>every pyramid fountain.<br><br>Reward: Gain +1 prism<br>well ↻ on collect after<br>multipliers.",
+            //name: "Omen of Light",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>Omen of Light</h3><hr style='margin-bottom:4px'>Get at least 1 ↻ for<br>every pyramid fountain.<br><br>Reward: Gain +1 prism<br>well ↻ on collect after<br>multipliers.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
-            marked: true,
+            //marked: true,
         },
         1223: {
-            name: "I sure hope I keep this a while",
-            image: "resources/achievements/12_23.png",
-            tooltip: "<h3>I sure hope I keep<br>this a while</h3><hr style='margin-bottom:4px'>Obtain a θ ↻.<br><br>Reward: Gain 20%<br>more prism well ↻<br>on collect.",
+            //name: "I sure hope I keep this a while",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>I sure hope I keep<br>this a while</h3><hr style='margin-bottom:4px'>Obtain a θ ↻.<br><br>Reward: Gain 20%<br>more prism well ↻<br>on collect.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
-            marked: true,
+            //marked: true,
         },
         1224: {
-            name: "Elite Bumpy Knowledge",
-            image: "resources/achievements/12_24.png",
-            tooltip: "<h3>Elite Bumpy Knowledge</h3><hr style='margin-bottom:4px'>Have 60 total project ↻.",
+            //name: "Elite Bumpy Knowledge",
+            name: "[COMING SOON]",
+            image: "resources/achievements/1_00.png",
+            tooltip: "<h3>[COMING SOON]</h3><hr style='margin-bottom:4px'>???",
+            //tooltip: "<h3>Elite Bumpy Knowledge</h3><hr style='margin-bottom:4px'>Have 60 total project ↻.",
             color: "#994d99",
             complete() {return false},
             unlocked: true,
-        },*/
+        },
         // Row 1: Wells of Light
         // Row 2: Prisms to Light Well Delta
         // Row 3: Light Well Delta to Wells of Prismatic
@@ -1581,7 +1599,7 @@ addLayer("achievements", {
                     ], {width: "621px", height: "409px", background: "#333", borderLeft: "3px solid white", padding: "3px"}],
                 ],
             },
-            13: { // Interspace before entering the cycle
+            13: {
                 unlocked() {return hasAchievement("achievements", 1201) || player.lightRift.interspaceUnlocked},
                 content: [
                     ["top-column", [
@@ -1592,72 +1610,6 @@ addLayer("achievements", {
                             ["achievement", 1219], ["achievement", 1220], ["achievement", 1221], ["achievement", 1222], ["achievement", 1223], ["achievement", 1224],
                         ]],
                     ], {width: "621px", height: "409px", background: "#1f0e1f", borderLeft: "3px solid white", padding: "3px"}],
-                ],
-            },
-            14: {
-                unlocked() {return true},
-                content: [
-                    ["top-column", [
-                        ["row", [
-                            
-                        ]],
-                    ], {width: "621px", height: "409px", background: "#333", borderLeft: "3px solid white", padding: "3px"}],
-                ],
-            },
-            15: {
-                unlocked() {return true},
-                content: [
-                    ["top-column", [
-                        ["row", [
-                            
-                        ]],
-                    ], {width: "621px", height: "409px", background: "#333", borderLeft: "3px solid white", padding: "3px"}],
-                ],
-            },
-            16: {
-                unlocked() {return true},
-                content: [
-                    ["top-column", [
-                        ["row", [
-                            
-                        ]],
-                    ], {width: "621px", height: "409px", background: "#333", borderLeft: "3px solid white", padding: "3px"}],
-                ],
-            },
-            17: { // Interspace after entering the cycle, before unlocking anti-singularity
-                unlocked() {return hasAchievement("achievements", 1701) || true},
-                content: [
-                    ["top-column", [
-                        ["row", [
-                            ["achievement", 1701], ["achievement", 1702], ["achievement", 1703], ["achievement", 1704], ["achievement", 1705], ["achievement", 1706],
-                            ["achievement", 1707], ["achievement", 1708], ["achievement", 1709], ["achievement", 1710], ["achievement", 1711], ["achievement", 1712],
-                            ["achievement", 1713], ["achievement", 1714], ["achievement", 1715], ["achievement", 1716], ["achievement", 1717], ["achievement", 1718],
-                            ["achievement", 1719], ["achievement", 1720], ["achievement", 1721], ["achievement", 1722], ["achievement", 1723], ["achievement", 1724],
-                        ]],
-                    ], {width: "621px", height: "409px", background: "#1f0e16", borderLeft: "3px solid white", padding: "3px"}],
-                ],
-            },
-            16: {
-                unlocked() {return true},
-                content: [
-                    ["top-column", [
-                        ["row", [
-                            
-                        ]],
-                    ], {width: "621px", height: "409px", background: "#333", borderLeft: "3px solid white", padding: "3px"}],
-                ],
-            },
-            19: { // Interspace after unlocking anti-singularity
-                unlocked() {return hasAchievement("achievements", 1901) || true},
-                content: [
-                    ["top-column", [
-                        ["row", [
-                            ["achievement", 1901], ["achievement", 1902], ["achievement", 1903], ["achievement", 1904], ["achievement", 1905], ["achievement", 1906],
-                            ["achievement", 1907], ["achievement", 1908], ["achievement", 1909], ["achievement", 1910], ["achievement", 1911], ["achievement", 1912],
-                            ["achievement", 1913], ["achievement", 1914], ["achievement", 1915], ["achievement", 1916], ["achievement", 1917], ["achievement", 1918],
-                            ["achievement", 1919], ["achievement", 1920], ["achievement", 1921], ["achievement", 1922], ["achievement", 1923], ["achievement", 1924],
-                        ]],
-                    ], {width: "621px", height: "409px", background: "#2e1522", borderLeft: "3px solid white", padding: "3px"}],
                 ],
             },
         },
@@ -1704,34 +1656,12 @@ addLayer("achievements", {
                 ], () => {return tmp.achievements.microtabs.stars[10].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
                 /*
                 ["style-row", [
-                    ["category-button", ["~ 11 ~<br><h6>Dice Space</h6>", "stars", 11], {width: "155px", height: "40px", color: "#c0c0c0", background: "#606060", borderRight: "3px solid white"}],
+                    ["category-button", ["~ 11 ~<br><h6>Early Zar</h6>", "stars", 11], {width: "155px", height: "40px", color: "#c0c0c0", background: "#606060", borderRight: "3px solid white"}],
                 ], () => {return tmp.achievements.microtabs.stars[11].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
-                ["style-row", [
-                    ["category-button", ["~ 12 ~<br><h6>Late Hive</h6>", "stars", 12], {width: "155px", height: "40px", color: "#c0c0c0", background: "#606060", borderRight: "3px solid white"}],
-                ], () => {return tmp.achievements.microtabs.stars[12].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
                 */
                 ["style-row", [
                     ["category-button", ["~ 13 ~<br><h6>Early Interspace</h6>", "stars", 13], {width: "155px", height: "40px", color: "#e0ffe0", background: "#402040", borderRight: "3px solid white"}],
                 ], () => {return tmp.achievements.microtabs.stars[13].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
-                /*
-                ["style-row", [
-                    ["category-button", ["~ 14 ~<br><h6>Early Tera</h6>", "stars", 14], {width: "155px", height: "40px", color: "#c0c0c0", background: "#606060", borderRight: "3px solid white"}],
-                ], () => {return tmp.achievements.microtabs.stars[14].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
-                ["style-row", [
-                    ["category-button", ["~ 15 ~<br><h6>Aniciffo</h6>", "stars", 15], {width: "155px", height: "40px", color: "#c0c0c0", background: "#606060", borderRight: "3px solid white"}],
-                ], () => {return tmp.achievements.microtabs.stars[15].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
-                ["style-row", [
-                    ["category-button", ["~ 16 ~<br><h6>Late Tera</h6>", "stars", 16], {width: "155px", height: "40px", color: "#c0c0c0", background: "#606060", borderRight: "3px solid white"}],
-                ], () => {return tmp.achievements.microtabs.stars[16].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
-                */
-               /*
-                ["style-row", [
-                    ["category-button", ["~ 17 ~<br><h6>Early Cycle</h6>", "stars", 17], {width: "155px", height: "40px", color: "#e0ffff", background: "#402030", borderRight: "3px solid white"}],
-                ], () => {return tmp.achievements.microtabs.stars[17].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
-                ["style-row", [
-                    ["category-button", ["~ 19 ~<br><h6>Late Cycle</h6>", "stars", 19], {width: "155px", height: "40px", color: "#ffe0f0", background: "#5e2441", borderRight: "3px solid white"}],
-                ], () => {return tmp.achievements.microtabs.stars[19].unlocked ? {width: "155px", height: "40px", borderBottom: "3px solid white"} : {display: "none !important"}}],
-                */
             ], {width: "170px", height: "415px"}],
             ["style-column", [
                 ["buttonless-microtabs", "stars", {borderWidth: "0"}],

@@ -39,7 +39,6 @@ addLayer("cbs", {
 
         ritualSpiritCooldown: new Decimal(0),
         ritualSpiritCooldownMax: new Decimal(21600),
-        ritualDuration: 0,
 
         ritualCosts: [new Decimal(20), new Decimal(6)],
         
@@ -81,10 +80,6 @@ addLayer("cbs", {
     color: "#c6f7ff",
     branches: ["sm",],
     update(delta) {
-        if (typeof delta === "number") player.cbs.ritualDuration += delta;
-        if (typeof delta === "object") player.cbs.ritualDuration += delta.toNumber();
-        if (typeof player.cbs.ritualDuration === "string") player.cbs.ritualDuration = 0;
-
         if (arena == null && player.subtabs["cbs"]['stuff'] == 'Battle') {
             player.subtabs["cbs"]['stuff'] = "Refresh Page :(";
         }
@@ -98,7 +93,8 @@ addLayer("cbs", {
         player.cbs.ritualCosts[1] = player.cbs.ascensionShards.min(100).pow(0.5).pow_base(2.5).mul(15).floor()
 
         player.cbs.ritualSpiritCooldownMax = new Decimal(21600)
-        player.cbs.ritualSpiritCooldown = player.cbs.ritualSpiritCooldown.sub(delta)
+        player.cbs.ritualSpiritCooldown = new Decimal(0) // TEMP
+        //player.cbs.ritualSpiritCooldown = player.cbs.ritualSpiritCooldown.sub(delta)
 
         //pylon
         player.cbs.pylonEnergyMax = Decimal.pow(1e5, player.cbs.pylonTier.pow(0.7))
@@ -144,7 +140,7 @@ addLayer("cbs", {
             tooltip() { return "Gives +25% movement speed and +2 HP/s. Halves effective level-up upgrades." },
             title() {
                 let str = "<h2>Perform Ritual</h2>"
-                str += (player.cbs.ritualSpiritCooldown.lte(0) ? ("<br>Requires:<br>" + formatWhole(player.cbs.ritualCosts[0]) + " Evolution Shards<br>" + formatWhole(player.cbs.ritualCosts[1]) + " Paragon Shards") : ("<br>Check back in " + formatTime(player.cbs.ritualSpiritCooldown)))
+                str += (player.cbs.ritualSpiritCooldown.lte(0) ? ("<br>Requires:<br>" + formatWhole(player.cbs.ritualCosts[0]) + " Evolution Shards<br>" + formatWhole(player.cbs.ritualCosts[1]) + " Paragon Shards") : ("Check back in " + formatTime(player.cbs.ritualSpiritCooldown)))
                 let timer = new Decimal(0)
                 if (player.ir.shipBattleSaveCurrent != null) {
                     timer = player.ir.timers[player.ir.shipBattleSaveCurrent.shipType].current.max(timer);
@@ -153,7 +149,7 @@ addLayer("cbs", {
                 if (timer.gt(0)) str += "<br>(Ship Cooling Down: " + formatTime(timer) + ")";
                 return str
             },
-            canClick() {return !player.uni.A2.paused && player.cb.evolutionShards.gte(player.cbs.ritualCosts[0]) && player.cb.paragonShards.gte(player.cbs.ritualCosts[1]) && player.cbs.ritualSpiritCooldown.lte(0) && player.ir.shipBattleSaveCurrent != null && player.ir.timers[player.ir.shipBattleSaveCurrent.shipType].current.lte(0) && (player.ir.shipBattleSaveCurrent.slot < 0 || player.ir.saveTimers[player.ir.shipBattleSaveCurrent.slot].current.lte(0))},
+            canClick() {return player.cb.evolutionShards.gte(player.cbs.ritualCosts[0]) && player.cb.paragonShards.gte(player.cbs.ritualCosts[1]) && player.cbs.ritualSpiritCooldown.lte(0) && player.ir.shipBattleSaveCurrent != null && player.ir.timers[player.ir.shipBattleSaveCurrent.shipType].current.lte(0) && (player.ir.shipBattleSaveCurrent.slot < 0 || player.ir.saveTimers[player.ir.shipBattleSaveCurrent.slot].current.lte(0))},
             unlocked: true,
             onClick() {
                 SB_enterRun("ascensionRitual")
@@ -161,7 +157,6 @@ addLayer("cbs", {
                 player.cb.evolutionShards = player.cb.evolutionShards.sub(player.cbs.ritualCosts[0])
                 player.cb.paragonShards = player.cb.paragonShards.sub(player.cbs.ritualCosts[1])
                 player.cbs.ritualSpiritCooldown = player.cbs.ritualSpiritCooldownMax
-                player.cbs.ritualDuration = 0
 
                 SB_spawnCelestialite("ritualSpirit")
                 for (let [i, v] of Object.entries(arena.upgrades)) {
@@ -340,7 +335,7 @@ addLayer("cbs", {
             currencyDisplayName: "Chance Points",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
             effect() {
@@ -366,7 +361,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
             effect() {
@@ -392,7 +387,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
         },  
@@ -415,7 +410,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
             effect() {
@@ -441,7 +436,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
             effect() {
@@ -467,7 +462,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
             effect() {
@@ -493,7 +488,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
         }, 
@@ -518,7 +513,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
             effect() {
@@ -545,7 +540,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
             effect() {
@@ -572,7 +567,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
         },
@@ -588,14 +583,14 @@ addLayer("cbs", {
             },
             title: "Blessing XI",
             unlocked() { return player.cbs.shrineReactivated },
-            description() { return "Ascension rituals completed in under 90 seconds yield an extra Shard of Ascension."},
+            description() { return "Ascension rituals completed in under 2 minutes yield an extra Shard of Ascension."},
             cost: new Decimal(1e300),
             currencyLocation() { return player.za },
             currencyDisplayName: "Chance Points",
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
         },
@@ -618,7 +613,7 @@ addLayer("cbs", {
             currencyInternalName: "chancePoints",
             style() {
                 let look = {borderRadius: "10px", color: "black", borderWidth: "3px", borderColor: "#064666", outline: "3px solid #c6f7ff", width: "200px", maxHeight: "125px", minHeight: "125px", fontSize: "12px", margin: "6px", padding: "0"}
-                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#c6f7ff"
+                hasUpgrade(this.layer, this.id) ? look.backgroundColor = "#77bf5f" : !canAffordUpgrade(this.layer, this.id) ? look.backgroundColor =  "#bf8f8f" : look.backgroundColor = "#064666"
                 return look
             },
         },
@@ -1194,11 +1189,11 @@ addLayer("cbs", {
                             ["style-row", [
                                 ["style-row", [
                                     ["raw-html", "???", { "color": "#ffffff7f", "font-size": "16px", "font-family": "monospace" }],
-                                ], {width: player.ir.inBattle ? "157.6px" : "104px", height: "50px", background: player.ir.inBattle ? player.ir.secondaryColor + "7f" : "#00002f", borderRadius: "0"}],
-                            ], {display: player.ev.evolutionsUnlocked[14] ? "none !important" : ""}],
+                                ], {width: player.ir.inBattle ? "157.6px" : "104px", height: "50px", background: player.ir.secondaryColor + "7f", borderRadius: "0"}],
+                            ], {display: player.ev.evolutionsUnlocked[13] ? "none !important" : ""}],
                             ["style-row", [
                                 ["category-button", ["Salvaged Upgrades", "shipSelectionStats", "salvagedUpgrades"], {width: player.ir.inBattle ? "157.6px" : "104px", height: "50px", background: player.ir.inBattle ? (player.ir.secondaryColor + "7f") : "#00003f", border: "3px solid " + (player.ir.inBattle ? (player.ir.primaryColor + "7f") : "#3383ab7f"), borderRadius: "0"}],
-                            ], {display: player.ev.evolutionsUnlocked[14] ? "" : "none !important"}],
+                            ], {display: player.ev.evolutionsUnlocked[13] ? "" : "none !important"}],
 
                         ], {width: player.ir.inBattle ? "800px" : "532px", height: "50px", borderRadius: "16px 16px 0 0"}],
                         ["style-row", [], {background: player.ir.inBattle ? player.ir.primaryColor : "#3383ab", width: player.ir.inBattle ? "800px" : "532px", height: "3px"}],
@@ -1794,7 +1789,7 @@ addLayer("cbs", {
                     ["raw-html", () => {return player.cbs.pylonBuilt ? "Boosts pet point gain by x" + format(player.cbs.pylonEnergyEffect2) + "." : ""}, {color: "white", fontSize: "12px", fontFamily: "monospace"}],
                     ["raw-html", () => {return player.cbs.pylonBuilt ? "Boosts crate roll chance by x" + format(player.cbs.pylonEnergyEffect3) + "." : ""}, {color: "white", fontSize: "12px", fontFamily: "monospace"}],
                     ["raw-html", () => {return player.cbs.pylonBuilt ? "Boosts base paradox pylon energy gain by +" + format(player.cbs.pylonEnergyEffect4, 3) + "." : ""}, {color: "white", fontSize: "12px", fontFamily: "monospace"}],
-                    ["raw-html", () => {return player.cbs.pylonBuilt ? "Passive effect: Boosts pollinator gain by ^" + format(player.cbs.pylonPassiveEffect, 3) + " (Based on pollinators)" : ""}, {color: "white", fontSize: "12px", fontFamily: "monospace"}],
+                    ["raw-html", () => {return player.cbs.pylonBuilt ? "Passive effect: Boosts pollinator gain by ^" + format(player.cbs.pylonPassiveEffect) + " (Based on pollinators)" : ""}, {color: "white", fontSize: "12px", fontFamily: "monospace"}],
                     ["raw-html", () => {return player.cbs.pylonBuilt ? "Your temporal pylon is tier " + formatWhole(player.cbs.pylonTier) + ", which boosts effective pylon energy and the passive effect by ^" + format(player.cbs.pylonTierEffect) + "." : ""}, {color: "white", fontSize: "12px", fontFamily: "monospace"}],
                     ["blank", "10px"],
                     ["row", [["rounded-ex-buyable", 101], ["blank", "3px", {width: "3px"}], ["rounded-ex-buyable", 102], ["blank", "3px", {width: "3px"}], ["rounded-ex-buyable", 103],]], 
@@ -1901,10 +1896,10 @@ addLayer("cbs", {
                                 ["style-row", [
                                     ["raw-html", "???", { "color": "#ffffff7f", "font-size": "16px", "font-family": "monospace" }],
                                 ], {width: "265px", height: "40px", background: "#00003f", borderRadius: "0"}],
-                            ], () => {return {display: player.ev.evolutionsUnlocked[14] ? "none !important" : ""}}],
+                            ], () => {return {display: player.ev.evolutionsUnlocked[13] ? "none !important" : ""}}],
                             ["style-row", [
                                 ["category-button", ["Space Junk", "ships", "automation"], {width: "265px", height: "40px", background: "#05354d", border: "3px solid #3383ab7f", borderRadius: "0"}],
-                            ], () => {return {display: player.ev.evolutionsUnlocked[14] ? "" : "none !important"}}],
+                            ], () => {return {display: player.ev.evolutionsUnlocked[13] ? "" : "none !important"}}],
 
                         ], {width: "800px", height: "40px", borderBottom: "3px solid #3383ab", borderRadius: "0"}],
                         ["style-column", [
