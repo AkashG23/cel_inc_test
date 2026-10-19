@@ -977,12 +977,11 @@ addLayer("achievements", {
             complete() {return false},
         },
         420: {
-            name: "akashg23",
-            image: "resources/achievements/5/5_00.png",
-            tooltip: "<h3>Title</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            name: "Outsmarted",
+            image: "resources/achievements/5/5_20.png",
+            tooltip: "<h3>Outsmarted</h3><hr style='margin-bottom:4px'>Escape Alt-Uni 1.",
             color: "#43aad9",
             unlocked: true,
-            marked: true,
             complete() {return false},
         },
         421: {
@@ -995,9 +994,9 @@ addLayer("achievements", {
             complete() {return false},
         },
         422: {
-            name: "akashg23",
-            image: "resources/achievements/5/5_00.png",
-            tooltip: "<h3>Title</h3><hr style='margin-bottom:4px'>Description<br><br>Reward: TBD",
+            name: "<small>Well it's a little more useful now</small>",
+            image: "resources/achievements/5/5_22.png",
+            tooltip: "<h3>Well it's a little<br>more useful now</h3><hr style='margin-bottom:4px'>Convert a cante core<br>into a rememberance core.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
             marked: true,
@@ -1005,7 +1004,7 @@ addLayer("achievements", {
         },
         423: {
             name: "Hello Marcel",
-            image: "resources/achievements/5/5_00.png",
+            image: "resources/achievements/5/5_23.png",
             tooltip: "<h3>Hello Marcel</h3><hr style='margin-bottom:4px'>Evolve Clock.<br><br>Reward: TBD",
             color: "#43aad9",
             unlocked: true,
