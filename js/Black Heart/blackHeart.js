@@ -138,6 +138,7 @@ BH_CURRENCY = {
     "paragonShards": ["Paragon Shards", "cb"],
     "temporalEssence": ["Temporal Essence", "discreteDissociation"],
     "liquidClockwork": ["Liquid Clockwork", "discreteDissociation"],
+    "celestialRadiation": ["Celestial Radiation", "anl"],
     "ascensionShards": ["Shards of Ascension", "cbs"],
 }
 
@@ -153,7 +154,10 @@ addLayer("bh", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-        creationUsed: false,
+
+        flipside: false,
+        necromanceUses: new Decimal(0),
+        characterDead: false,
 
         unlockConditions: {
             core: false,
@@ -418,6 +422,8 @@ addLayer("bh", {
                 luck: new Decimal(0),
                 mending: new Decimal(0),
                 potency: new Decimal(10),
+                used: false,
+                index: 0,
             },
             "nav": {
                 selected: 2,
@@ -436,6 +442,8 @@ addLayer("bh", {
                 luck: new Decimal(0),
                 mending: new Decimal(0),
                 potency: new Decimal(0),
+                used: false,
+                index: 0,
             },
             "sel": {
                 selected: 3,
@@ -454,6 +462,8 @@ addLayer("bh", {
                 luck: new Decimal(0),
                 mending: new Decimal(0),
                 potency: new Decimal(5),
+                used: false,
+                index: 0,
             },
             "eclipse": {
                 selected: 0,
@@ -472,6 +482,8 @@ addLayer("bh", {
                 luck: new Decimal(0),
                 mending: new Decimal(0),
                 potency: new Decimal(10),
+                used: false,
+                index: 0,
             },
             "geroa": {
                 selected: 0,
@@ -490,6 +502,8 @@ addLayer("bh", {
                 luck: new Decimal(0),
                 mending: new Decimal(0),
                 potency: new Decimal(0),
+                used: false,
+                index: 0,
             },
             "vespasian": {
                 selected: 0,
@@ -508,14 +522,16 @@ addLayer("bh", {
                 luck: new Decimal(0),
                 mending: new Decimal(5),
                 potency: new Decimal(5),
+                used: false,
+                index: 0,
             },
             "creation": {
                 selected: false,
                 skills: {
                     0: "creation_increment",
-                    1: "none",
-                    2: "none",
-                    3: "none",
+                    1: "creation_upgrade",
+                    2: "creation_prestige",
+                    3: "creation_mend",
                 },
                 usedSP: new Decimal(10),
                 health: new Decimal(125),
@@ -526,6 +542,8 @@ addLayer("bh", {
                 luck: new Decimal(2.5),
                 mending: new Decimal(5),
                 potency: new Decimal(5),
+                used: false,
+                index: 0,
             },
             "diceFive": {
                 selected: false,
@@ -544,6 +562,29 @@ addLayer("bh", {
                 luck: new Decimal(25),
                 mending: new Decimal(5),
                 potency: new Decimal(5),
+                used: false,
+                index: 0,
+            },
+            "nox": {
+                selected: false,
+                skills: {
+                    0: "nox_bloodthirstySpear",
+                    1: "nox_bloodDrain", 
+                    2: "nox_vampiricTransformation",
+                    3: "nox_lastChance",
+                },
+                usedSP: new Decimal(6),
+                health: new Decimal(200),
+                damage: new Decimal(3),
+                defense: new Decimal(6),
+                regen: new Decimal(0.5),
+                agility: new Decimal(8),
+                luck: new Decimal(0),
+                mending: new Decimal(10),
+                potency: new Decimal(0),
+                used: false,
+                batActive: false,
+                index: 0,
             },
             "bumpy": {
                 selected: false,
@@ -604,6 +645,7 @@ addLayer("bh", {
             "eclipse_lightBarrier": {selected: ["none", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
             "eclipse_solarRetinopathy": {selected: ["none", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
             "eclipse_syzygy": {selected: ["none", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
+            "eclipse_flipside": {selected: ["none", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
 
             // GEROA
             "geroa_radioactiveMissile": {selected: ["geroa", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
@@ -631,6 +673,11 @@ addLayer("bh", {
             "diceFive_coinToss": {selected: ["diceFive", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
             "diceFive_snakeEyes": {selected: ["diceFive", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
 
+            // NOX
+            "nox_bloodthirstySpear": {selected: ["nox", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
+            "nox_bloodDrain": {selected: ["nox", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
+            "nox_vampiricTransformation": {selected: ["nox", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
+            "nox_lastChance": {selected: ["nox", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
             // BUMPY
             "bumpy_starbeam": {selected: ["bumpy", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
             "bumpy_flashbang": {selected: ["none", 0], level: new Decimal(0), maxLevel: new Decimal(0)},
@@ -794,6 +841,13 @@ addLayer("bh", {
             player.bh.bhPause = true
         }
 
+        if (player.bh.currentStage == "none")
+        {
+            player.bh.flipside = false
+            player.bh.necromanceUses = new Decimal(2)
+            player.bh.celestialite.attackID = 0
+        }
+
         // Stage Code
         player.bh.respawnMax = new Decimal(5)
         if (BHS[player.bh.currentStage].respawnTime) player.bh.respawnMax = BHS[player.bh.currentStage].respawnTime
@@ -829,6 +883,10 @@ addLayer("bh", {
         player.bh.comboScalingReduction = player.bh.comboScalingReduction + (buyableEffect("laboratory", 1).sub(1).toNumber())
         player.bh.comboScalingReduction = player.bh.comboScalingReduction + levelableEffect("car", 113)[0].toNumber()
         player.bh.comboScaling = Math.max(player.bh.comboScaling - player.bh.comboScalingReduction , 1)
+        if (player.bh.comboScaling < 1.01)
+        {
+            player.bh.comboScaling = 1.01
+        } //prone to deletion
 
         player.bh.comboScalingStart = new Decimal(Infinity)
         if ("comboScalingStart" in BHS[player.bh.currentStage]) player.bh.comboScalingStart = BHS[player.bh.currentStage].comboScalingStart
@@ -861,6 +919,17 @@ addLayer("bh", {
             {
                 player.subtabs["bh"]["stuff"] = "dead"
             }
+            if (player.aniciffoLabyrinth.inLabyrinth && !player.anl.shipRoom)
+            {
+                player.tab = "anld"
+                options.fullscreen = false
+                player.aniciffoLabyrinth.inLabyrinth = false
+
+                player.subtabs["bh"]["stuff"] = "stages"
+            } else
+            {
+                player.subtabs["bh"]["stuff"] = "dead"
+            }
         }
 
         if (player.bh.currentStage == "none" && player.bh.autoEnter) player.bh.autoCooldown = player.bh.autoCooldown.add(normTime)
@@ -872,6 +941,35 @@ addLayer("bh", {
             }
             if (player.bh.autoEnter == "zarDungeon") {
                 BHStageEnter("zarDungeon", [player.zarDungeon.navToggle ? "nav" : "none", player.zarDungeon.diceFiveToggle ? "diceFive" : "none", "none"])
+            } else if (player.bh.autoEnter == player.anl.selectedRoom)
+            {
+                player.aniciffoLabyrinth.inLabyrinth = true
+                BHStageEnter(player.anl.selectedRoom, [player.aniciffoLabyrinth.creationToggle ? "creation" : "none", player.aniciffoLabyrinth.eclipseToggle ? "eclipse" : "none", player.aniciffoLabyrinth.noxToggle ? "nox" : "none"])
+
+                if (player.aniciffoLabyrinth.creationToggle) {
+                    player.bh.characters[0].skills[0].id = "creation_increment"
+                    player.bh.characters[0].skills[1].id = "creation_upgrade"
+                    player.bh.characters[0].skills[2].id = "creation_prestige"
+                    player.bh.characters[0].skills[3].id = "creation_mend"
+                }
+                if (player.aniciffoLabyrinth.noxToggle) {
+                    player.bh.characters[2].skills[0].id = "nox_bloodthirstySpear"
+                    player.bh.characters[2].skills[1].id = "nox_bloodDrain"
+                    player.bh.characters[2].skills[2].id = "nox_vampiricTransformation"
+                    player.bh.characters[2].skills[3].id = "nox_lastChance"
+                }
+                setTimeout(() => {
+                    for (let i = 0; i < 3; i++) {
+                        player.bh.characters[i].health = player.bh.characters[i].maxHealth
+                        player.bh.characters[i].shield = new Decimal(0)
+                        player.bh.characters[i].stun = ["none", new Decimal(0)]
+                        for (let j = 0; j < 4; j++) {
+                        player.bh.characters[i].skills[j].cooldown = player.bh.characters[i].skills[j].cooldownMax.sub(0.01)
+                        player.bh.characters[i].skills[j].duration = new Decimal(0)
+                        player.bh.characters[i].skills[j].interval = new Decimal(0)
+                        }
+                    }
+                }, 200); 
             } else {
                 BHStageEnter(player.bh.autoEnter)
             }
@@ -910,6 +1008,13 @@ addLayer("bh", {
                     options.fullscreen = false
 
                     player.subtabs["bh"]["stuff"] = "stages"
+                } else if (player.aniciffoLabyrinth.inLabyrinth)
+                {
+                    player.tab = "anld"
+                    options.fullscreen = false
+                    player.aniciffoLabyrinth.inLabyrinth = false
+
+                    player.subtabs["bh"]["stuff"] = "stages"
                 } else
                 {
                     player.subtabs["bh"]["stuff"] = "dead"
@@ -926,6 +1031,15 @@ addLayer("bh", {
                     player.bh.characters[0].skills[i].id = "none"
                 }
                 }
+
+                if (player.bh.characters[2].id == "nox") { //change when there is a formal unlock for the creation
+                player.bh.characters[2].id = "none"
+                player.bh.characterData[player.bh.characterSelection].selected = true
+                for (let i = 0; i < 4; i++) {
+                    player.bh.characters[2].skills[i].id = "none"
+                }
+                }
+
                 player.zarDungeon.reachedZar = false
                 player.zarDungeon.reachedZar2 = false
             }
@@ -947,7 +1061,7 @@ addLayer("bh", {
                     }
 
                     if (player.bh.celestialite.stun[1].gt(0)) {
-                        player.bh.celestialite.stun[1] = player.bh.celestialite.stun[1].sub(delta)
+                        if (!player.anl.marcelTimeStop) player.bh.celestialite.stun[1] = player.bh.celestialite.stun[1].sub(delta)
                         if (player.bh.celestialite.stun.length >= 3 && player.bh.celestialite.stun[1].lte(0)) {
                             bhAction(3, player.bh.celestialite.stun[2], false, 1, true)
                         }
@@ -973,9 +1087,9 @@ addLayer("bh", {
                         let active = BHC[player.bh.celestialite.id].actions[i].active
                         let passive = BHC[player.bh.celestialite.id].actions[i].passive
                         if (unpaused) {
-                            if (player.bh.celestialite.actions[i].duration.gt(0)) player.bh.celestialite.actions[i].duration = player.bh.celestialite.actions[i].duration.sub(delta)
+                            if (player.bh.celestialite.actions[i].duration.gt(0) && !player.anl.marcelTimeStop) player.bh.celestialite.actions[i].duration = player.bh.celestialite.actions[i].duration.sub(delta)
                             if (instant || active) {
-                                if (!curStun) player.bh.celestialite.actions[i].cooldown = player.bh.celestialite.actions[i].cooldown.add(delta)
+                                if (!curStun && !player.anl.marcelTimeStop) player.bh.celestialite.actions[i].cooldown = player.bh.celestialite.actions[i].cooldown.add(delta)
                                 if (player.bh.celestialite.actions[i].cooldown.gte(BHC[player.bh.celestialite.id].actions[i].cooldown.mul(Decimal.div(100, Decimal.add(100, player.bh.celestialite.agility))))) {
                                     if (!BHC[player.bh.celestialite.id].actions[i].conditional || BHC[player.bh.celestialite.id].actions[i].conditional(3, i)) {
                                         if (instant) {
@@ -1369,6 +1483,7 @@ addLayer("bh", {
         healthBase = healthBase.add(player.darkTemple.hpMult)
         if (hasUpgrade("ep2", 9101)) healthBase = healthBase.add(upgradeEffect("ep2", 9101))
         healthBase = healthBase.add(levelableEffect("car", 102)[0])
+        healthBase = healthBase.add(buyableEffect("anl", 11))
 
         let healthAdd = new Decimal(0)
         healthAdd = healthAdd.add(buyableEffect("sme", 131))
@@ -1407,6 +1522,7 @@ addLayer("bh", {
 
         damageAdd = damageAdd.add(levelableEffect("car", 103)[0])
         if (hasAchievement("achievements", 922)) damageAdd = damageAdd.add(1)
+        if (hasAchievement("achievements", 1004)) damageAdd = damageAdd.add(1)
 
         // =-- REGEN STUFF --= //
         let regenBase = new Decimal(1)
@@ -1440,6 +1556,7 @@ addLayer("bh", {
         agilityAdd = agilityAdd.add(player.bh.skillData["vespasian_paralyticBite"].maxLevel.div(2))
         agilityAdd = agilityAdd.add(buyableEffect("sme", 133))
         agilityAdd = agilityAdd.add(levelableEffect("car", 106)[0])
+        if (hasAchievement("achievements", 1023)) agilityAdd = agilityAdd.add(2)
 
         // =-- DEFENSE STUFF --= //
         let defenseBase = new Decimal(1)
@@ -1454,6 +1571,7 @@ addLayer("bh", {
         defenseAdd = defenseAdd.add(levelableEffect("pet", 310)[1])
         defenseAdd = defenseAdd.add(buyableEffect("stagnantSynestia", 1))
         defenseAdd = defenseAdd.add(levelableEffect("car", 108)[0])
+        if (hasAchievement("achievements", 1024)) defenseAdd = defenseAdd.add(2)
 
         // =-- LUCK STUFF --= //
         let luckBase = new Decimal(1)
@@ -1482,6 +1600,7 @@ addLayer("bh", {
         if (player.alephsChamber.milestone[25] > 0) mendingAdd = mendingAdd.add(10)
         mendingAdd = mendingAdd.add(levelableEffect("car", 110)[0])
         mendingAdd = mendingAdd.add(player.bh.skillData["nav_violetResonance"].maxLevel)
+        if (hasAchievement("achievements", 1022)) mendingAdd = mendingAdd.add(2)
 
         // =-- POTENCY STUFF --= //
         let potencyBase = new Decimal(1)
@@ -1489,6 +1608,7 @@ addLayer("bh", {
         let potencyAdd = new Decimal(0)
         potencyAdd = potencyAdd.add(player.darkTemple.potAdd)
         potencyAdd = potencyAdd.add(levelableEffect("car", 111)[0])
+        if (hasUpgrade("anl", 33)) potencyAdd = potencyAdd.add(4)
 
         // =-- STAT CALCULATION --=
         for (let i = 0; i < 3; i++) {
@@ -1499,6 +1619,7 @@ addLayer("bh", {
             player.bh.characters[i].maxHealth = player.bh.characters[i].maxHealth.mul(buyableEffect("depth1", 101))
             player.bh.characters[i].maxHealth = player.bh.characters[i].maxHealth.add(bhTemp[i].healthAdd)
             player.bh.characters[i].maxHealth = player.bh.characters[i].maxHealth.mul(bhTemp[i].healthMult)
+            if (player.bh.currentStage == "roomE") player.bh.characters[i].maxHealth = player.bh.characters[i].maxHealth.mul(0.75)
 
             // DAMAGE
             player.bh.characters[i].damage = run(BHP[player.bh.characters[i].id].damage, BHP[player.bh.characters[i].id]) ?? new Decimal(0)
@@ -1522,6 +1643,7 @@ addLayer("bh", {
             player.bh.characters[i].regen = player.bh.characters[i].regen.add(bhTemp[i].regenAdd)
             player.bh.characters[i].regen = player.bh.characters[i].regen.mul(bhTemp[i].regenMult)
             if (BHS[player.bh.currentStage].healthDrain) player.bh.characters[i].regen = player.bh.characters[i].regen.sub(BHS[player.bh.currentStage].healthDrain)
+            if (player.bh.currentStage == "roomD" || player.bh.currentStage == "roomG") player.bh.characters[i].regen = player.bh.characters[i].regen.mul(0.5)
 
             // AGILITY
             player.bh.characters[i].agility = run(BHP[player.bh.characters[i].id].agility, BHP[player.bh.characters[i].id]) ?? new Decimal(0)
@@ -1645,19 +1767,44 @@ addLayer("bh", {
             }
         }
 
-        //check if creation is used (the long way cause why not)
-        if (player.bh.characters[0].id == "creation") {
-            player.bh.creationUsed = true
+        // Update characterData[id].used based on whether each character is in any party slot
+        for (let id in player.bh.characterData) {
+            player.bh.characterData[id].used = (
+                player.bh.characters[0].id == id ||
+                player.bh.characters[1].id == id ||
+                player.bh.characters[2].id == id
+            )
         }
-        if (player.bh.characters[1].id == "creation") {
-            player.bh.creationUsed = true
+
+        //assigns each index of the characters to characterData
+        for (let i = 0; i < 3; i++) {
+            let char = player.bh.characters[i].id
+            for (let id in player.bh.characterData) {
+                if (char == id)
+                {
+                    player.bh.characterData[char].index = i
+                }
+            }
+        } 
+
+        let allAlive = true;
+
+        for (let i = 0; i < 3; i++) {
+            if (player.bh.characters[i].health.lte(0)) {
+                player.bh.characterDead = true;
+                allAlive = false;
+                break; // Stop looking once we find a dead character
+            }
         }
-        if (player.bh.characters[2].id == "creation") {
-            player.bh.creationUsed = true
+        
+        // If the loop finished and everyone was alive, set characterDead to false
+        if (allAlive) {
+            player.bh.characterDead = false;
         }
-        if ((player.bh.characters[2].id != "creation") && (player.bh.characters[1].id != "creation") && (player.bh.characters[0].id != "creation")) {
-            player.bh.creationUsed = false
-        }
+
+        if (player.bh.flipside && player.bh.skillData["sel_scavenger"].selected[0] == "sel" && player.bh.characterData["sel"].active) player.bh.characters[player.bh.characterData["sel"].index].regen = new Decimal(0)
+        
+    
     },
     clickables: {
         "Unlock-Clear": {
@@ -1761,7 +1908,7 @@ addLayer("bh", {
             branches: [["Unlock-Clear", "#8a0e79"]]
         },
         "Leave": {
-            title() { return "<h2>Leave the Black Heart" },
+            title() { return "<h2>Leave your battle." },
             canClick: true,
             unlocked: true,
             onClick() {
@@ -1770,6 +1917,11 @@ addLayer("bh", {
                 player.subtabs["bh"]["stuff"] = "stages"
                 if (player.universe == "DS") {
                     if (player.zd.buyables[14].gte(1)) player.tab = "zd"
+                }
+                if (player.aniciffoLabyrinth.inLabyrinth) {
+                    player.musuniverse = "AD1"
+                    player.tab = "anl"
+                    player.aniciffoLabyrinth.inLabyrinth = false
                 }
             },
             style() {
@@ -1959,6 +2111,7 @@ addLayer("bh", {
                 if (passive) look.backgroundImage = "linear-gradient(rgba(0,0,0,0.5))"
                 if (BHA[player.bh.characters[0].skills[0].id].style) look = Object.assign({}, look, run(BHA[player.bh.characters[0].skills[0].id].style, BHA[player.bh.characters[0].skills[0].id]))
                 return look
+            
             },
         },
         "C0-Skill-1": {
@@ -3072,7 +3225,7 @@ addLayer("bh", {
         "Char-Creation": {
             title() {return "<img src='" + run(BHP["creation"].icon, BHP["creation"]) + "'style='width:90px;height:90px;margin-left:-2px;margin-bottom:-4px'></img>"},
             canClick: true,
-            unlocked() {return false}, //change to false
+            unlocked() {return false}, 
             onClick() {
                 player.bh.characterSelection = "creation"
             },
@@ -3093,6 +3246,18 @@ addLayer("bh", {
                 let look = {width: "90px", minHeight: "90px", color: "white", background: "transparent", padding: "0", borderRadius: "0", margin: "2px"}
                 if (player.bh.characterData.diceFive.selected) look.filter = "brightness(50%)"
                 return look
+            },
+        },
+        "Char-Nox": {
+            title() {return "<img src='" + run(BHP["nox"].icon, BHP["nox"]) + "'style='width:90px;height:90px;margin-left:-2px;margin-bottom:-4px'></img>"},
+            canClick: true,
+            unlocked() {return false },
+            onClick() {
+                player.bh.characterSelection = "nox"
+            },
+            style() {
+                let look = {width: "90px", minHeight: "90px", color: "white", background: "transparent", padding: "0", borderRadius: "0", margin: "2px"}
+                if (player.bh.characterData.nox.selected) look.filter = "brightness(50%)"
             },
         },
         "Char-Bumpy": {
@@ -4381,7 +4546,8 @@ addLayer("bh", {
                         ["theme-scroll-column", [
                             ["blank", "2px"],
                             ["row", [
-                                ["clickable", "Char-Kres"], ["clickable", "Char-Nav"], ["clickable", "Char-Sel"], ["clickable", "Char-Eclipse"], ["clickable", "Char-Geroa"], ["clickable", "Char-Vespasian"], ["clickable", "Char-Creation"], ["clickable", "Char-DiceFive"], ["clickable", "Char-Bumpy"]
+                                ["clickable", "Char-Kres"], ["clickable", "Char-Nav"], ["clickable", "Char-Sel"], ["clickable", "Char-Eclipse"], ["clickable", "Char-Geroa"], ["clickable", "Char-Vespasian"], ["clickable", "Char-Creation"], ["clickable", "Char-DiceFive"],
+                                ["clickable", "Char-Nox"], ["clickable", "Char-Bumpy"]
                             ]],
                         ], {width: "497px", height: "480px"}],
                     ], {width: "497px", height: "677px"}],
@@ -4513,7 +4679,7 @@ addLayer("bh", {
                                     ["blank", "4px"],
                                     ["style-row", [
                                         ["style-column", [["hoverless-clickable", "Char-C0-S0"]], () => {
-                                            let look = {width: "45px", height: "45px", border: "3px solid", marginRight: "4px"}
+                                            let look = {width: "45px", height: "45px",  border: "3px solid", marginRight: "4px"}
                                             player.bh.inputSkillSelection == 0 && player.subtabs["bh"]["party"] == "skills" ? look.borderColor = "white" : look.borderColor = "black"
                                             return look
                                         }],
@@ -4600,7 +4766,7 @@ addLayer("bh", {
                                     ["blank", "4px"],
                                     ["style-row", [
                                         ["style-column", [["hoverless-clickable", "Char-C1-S0"]], () => {
-                                            let look = {width: "45px", height: "45px", border: "3px solid", marginRight: "4px"}
+                                            let look = {width: "45px", height: "45px",  border: "3px solid", marginRight: "4px"}
                                             player.bh.inputSkillSelection == 4 && player.subtabs["bh"]["party"] == "skills" ? look.borderColor = "white" : look.borderColor = "black"
                                             return look
                                         }],
@@ -4816,6 +4982,8 @@ addLayer("bh", {
                     ["bar", "timer"],
                     ["row", [
                         ["column", [
+                                    ["row", [["raw-html", () => {return player.bh.characterData["creation"].used || player.bh.characterData["nox"].used ? "You have <h3>" + format(player.creation.incrementalEnergy) + "</h3> incremental energy." : ""}, {color: "#c9acff", fontSize: "18px", fontFamily: "monospace"}]]],
+                                    ["row", [["raw-html", () => {return player.creation.incrementalEnergy.gte(player.creation.softcapStart) ? "After " + format(player.creation.softcapStart) + " incremental energy, gain is divided by /" + format(player.creation.softcap) + "." : ""}, {color: "red", fontSize: "12px", fontFamily: "monospace"}]]],
                             ["row", [
                                 ["style-column", [
                                     ["clickable", "C0-Icon"], 
@@ -4832,7 +5000,6 @@ addLayer("bh", {
                                         ["tooltip-row", [["raw-html", () => {return player.bh.characters[0].attributes.negative ? "—<div class='bottomTooltip' style='margin-top:0px'>Negative<hr>Incoming attacks have a <br>" + formatSimple(Decimal.mul(player.bh.characters[0].attributes.negative, Decimal.div(Decimal.add(100, player.bh.characters[0].luck), 100)).mul(100)) + "% chance to be turned<br>into heals.</div>" : ""}, {color: "#44b", fontSize: "30px", fontFamily: "monospace", textShadow: "1px 1px 1px black, -1px 1px 1px black, -1px -1px 1px black, 1px -1px 1px black", marginLeft: "2px"}]]],
                                     ], {width: "150px", height: "30px", marginTop: "-35px"}],
                                     ["blank", ["25px", "5px"]],
-                                    ["row", [["raw-html", () => {return player.bh.creationUsed ? "You have <h3>" + format(player.creation.incrementalEnergy) + "</h3> incremental energy." : ""}, {color: "#c9acff", fontSize: "18px", fontFamily: "monospace"}]]],
                                 ], {margin: "5px"}],
                                 ["style-column", [
                                     ["clickable", "C1-Icon"],

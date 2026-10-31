@@ -193,6 +193,8 @@ SB_zones.iriditeZone = {
         // || level.eq(2)
         if (level.modulo(1).eq(0)) {
             SB_spawnCelestialite("iridite")
+            player.ir.tookDamageInIriditeFight = false;
+            player.ir.battleXP = new Decimal(0); // Avoid player from leveling past boss and missing the fight
         }
     },
     statMult: new Decimal(4),
@@ -534,6 +536,7 @@ SB_celestialites.iridite = {
         arena.bossActive = false
 
         player.ir.iriditeDefeated = true
+        if (!player.ir.tookDamageInIriditeFight) player.ir.astralShipUnlocked = true
         player.ir.battleXP = player.ir.battleXPReq
     },
     draw: (ctx, celestialite) => {
